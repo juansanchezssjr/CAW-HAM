@@ -1,0 +1,40 @@
+/* Estilos del documento y variables */
+
+@import url('./assets/fonts/fonts.css');
+
+:root {
+    --fontTitle: 'Bebas Neue', sans-serif;
+    --fontText: 'Courier Prime', monospace;
+    --fontSizeTitle: 2.5rem;
+    --fontSizeText: 1.2rem;
+    --fontMainColor: #313134;
+    --fontSecondaryColor: #333333;
+    --fontTitleColor: #3d344f;
+    --fontTitleColor2: #9e6237;
+    --selectionColor: #5b32ad8d;
+    --backkgroundColor: #eaeaea;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--fontMainColor);
+}
+
+::selection {
+    background-color: var(--selectionColor);
+    color: white;
+}
+
+/* Estilos del modulo Markdown*/
+
+#md table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+}

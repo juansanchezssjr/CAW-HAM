@@ -61,7 +61,46 @@ header {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #ccc;
-    transition: padding 0.25s ease, background-color 0.25s ease;
+    transition: padding 0.25s ease, background-color 0.25s ease, transform 0.3s ease;
+}
+
+.header-reveal-zone {
+    display: none;
+}
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+    .page-main > header.is-hidden {
+        transform: translateY(-110%);
+    }
+
+    .header-reveal-zone {
+        display: block;
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 11;
+        height: 14px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .header-reveal-zone::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 3rem;
+        height: 4px;
+        border-radius: 0 0 4px 4px;
+        background-color: var(--fontTitleColor2);
+        transform: translateX(-50%);
+    }
+
+    .header-reveal-zone.is-active {
+        opacity: 1;
+        pointer-events: auto;
+        cursor: pointer;
+    }
 }
 
 header img {

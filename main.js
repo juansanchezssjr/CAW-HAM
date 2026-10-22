@@ -28,15 +28,61 @@ const timer = setInterval(updateCountdown, 1_000);
 updateCountdown();
 
 const siteHeader = document.querySelector(".page-main > header");
-const compactHeaderBreakpoint = window.matchMedia("(min-width: 769px)");
+const headerRevealZone = document.querySelector(".header-reveal-zone");
+const compactHeaderBreakpoint = window.matchMedia(
+    "(min-width: 769px) and (hover: hover) and (pointer: fine)"
+);
+let headerHideTimeout;
+let pointerInHeader = false;
+let pointerInRevealZone = false;
+let headerHasFocus = false;
 
 function updateHeaderSize() {
-    siteHeader.classList.toggle(
-        "is-compact",
-        compactHeaderBreakpoint.matches && window.scrollY > 80
-    );
+    const isScrolled = window.scrollY > 80;
+    const canHideHeader = compactHeaderBreakpoint.matches && isScrolled;
+    const isHidden =
+        canHideHeader && !pointerInHeader && !pointerInRevealZone && !headerHasFocus;
+
+    siteHeader.classList.toggle("is-compact", canHideHeader);
+    siteHeader.classList.toggle("is-hidden", isHidden);
+    headerRevealZone.classList.toggle("is-active", isHidden || pointerInRevealZone);
 }
 
+function cancelHeaderHide() {
+    window.clearTimeout(headerHideTimeout);
+}
+
+function scheduleHeaderUpdate() {
+    cancelHeaderHide();
+    headerHideTimeout = window.setTimeout(updateHeaderSize, 250);
+}
+
+siteHeader.addEventListener("pointerenter", () => {
+    pointerInHeader = true;
+    cancelHeaderHide();
+    updateHeaderSize();
+});
+siteHeader.addEventListener("pointerleave", () => {
+    pointerInHeader = false;
+    scheduleHeaderUpdate();
+});
+headerRevealZone.addEventListener("pointerenter", () => {
+    pointerInRevealZone = true;
+    cancelHeaderHide();
+    updateHeaderSize();
+});
+headerRevealZone.addEventListener("pointerleave", () => {
+    pointerInRevealZone = false;
+    scheduleHeaderUpdate();
+});
+siteHeader.addEventListener("focusin", () => {
+    headerHasFocus = true;
+    updateHeaderSize();
+});
+siteHeader.addEventListener("focusout", () => {
+    headerHasFocus = false;
+    scheduleHeaderUpdate();
+});
 window.addEventListener("scroll", updateHeaderSize, { passive: true });
 compactHeaderBreakpoint.addEventListener("change", updateHeaderSize);
 updateHeaderSize();

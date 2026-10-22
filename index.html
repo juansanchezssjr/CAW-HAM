@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas al Mictlan - CBTis 246</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" defer></script>
 </head>
 <body>
-    <h1>Hola mundo <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>DEL</kbd></h1>
+    <main class="page-main">
+        <header>
+            <img src="logoheader.png" alt="Logo">
+            <nav class="h-nav">
+                <a href="#inicio">INICIO</a>
+                <a href="#evento">EVENTO</a>
+                <a href="">ALTAR</a>
+            </nav>
+        </header>
+        <section class="hero">
+            <h1>5° Festival del <strong>Día de Muertos</strong></h1>
+            <p id="countdown" role="timer" aria-label="Cuenta regresiva para el festival"></p>
+        </section>
+        <div class="band">5ta Edicion "Huellitas al Mictlan", Bienvenidos.</div>
+        <m-md src="pages/inicio.md" id="inicio"></m-md>
+        <m-md src="pages/evento.md" id="evento"></m-md>
+    </main>
+    <script src="main.js" defer></script>
 </body>
 </html>

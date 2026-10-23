@@ -369,6 +369,9 @@
 
 #mmd img {
     display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     margin: 1.4em auto;
 }
 

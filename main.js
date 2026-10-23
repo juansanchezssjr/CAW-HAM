@@ -87,9 +87,12 @@ window.addEventListener("scroll", updateHeaderSize, { passive: true });
 compactHeaderBreakpoint.addEventListener("change", updateHeaderSize);
 updateHeaderSize();
 
-import("./modules/mmd.js").catch((error) => {
-    console.error("No se pudo habilitar el componente Markdown:", error);
+Promise.all([
+    import("./modules/mmd.js"),
+    import("./modules/modl.js")
+]).catch((error) => {
+    console.error("No se pudieron habilitar los componentes de contenido:", error);
     document.querySelectorAll("m-md").forEach((component) => {
-        component.textContent = "No se pudo habilitar el componente Markdown.";
+        component.textContent = "No se pudieron habilitar los componentes de contenido.";
     });
 });

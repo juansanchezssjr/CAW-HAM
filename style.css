@@ -192,3 +192,188 @@ header img {
     font-size: 1.2rem;
     font-weight: 700;
 }
+
+.invitacion {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(2rem, 7vw, 6rem);
+    overflow: hidden;
+    margin: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 4rem);
+    padding: clamp(2rem, 6vw, 4.5rem);
+    border-block: 1px solid rgb(240 190 105 / 55%);
+    background:
+        radial-gradient(ellipse at 85% 50%, rgb(158 98 55 / 28%), transparent 36%),
+        linear-gradient(120deg, #282131, #3d344f 70%, #332b3b);
+    color: #f8f1e6;
+}
+
+.invitacion::before,
+.invitacion::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    pointer-events: none;
+}
+
+.invitacion::before {
+    inset: 0.75rem;
+    border: 1px solid rgb(240 190 105 / 22%);
+}
+
+.invitacion::after {
+    top: 50%;
+    right: 8%;
+    width: clamp(12rem, 28vw, 22rem);
+    aspect-ratio: 1;
+    border: 1px solid rgb(240 190 105 / 10%);
+    outline: 1px solid rgb(240 190 105 / 8%);
+    outline-offset: 0.7rem;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.invitacion-copy {
+    max-width: 42rem;
+}
+
+.invitacion-eyebrow,
+.invitacion-date-label {
+    color: #efbd69;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.invitacion h2 {
+    margin-top: 0.8rem;
+    color: #fff8ec;
+    font-family: var(--fontTitle);
+    font-size: clamp(2.7rem, 6.5vw, 5.4rem);
+    font-weight: 400;
+    line-height: 0.98;
+    text-transform: uppercase;
+}
+
+.invitacion-description {
+    max-width: 35rem;
+    margin-top: 1.25rem;
+    color: #e2dbe2;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.7;
+}
+
+.invitacion-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid #efbd69;
+    color: #fff8ec;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.invitacion-link span {
+    color: #efbd69;
+    font-size: 1.3rem;
+    transition: transform 0.2s ease;
+}
+
+.invitacion-link:hover,
+.invitacion-link:focus-visible {
+    background-color: #efbd69;
+    color: #282131;
+}
+
+.invitacion-link:hover span,
+.invitacion-link:focus-visible span {
+    color: #282131;
+    transform: translateX(0.2rem);
+}
+
+.invitacion-link:focus-visible {
+    outline: 2px solid #fff8ec;
+    outline-offset: 3px;
+}
+
+.invitacion-date {
+    display: flex;
+    min-width: 10rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 1.5rem;
+    border-left: 1px solid rgb(240 190 105 / 48%);
+    color: #fff8ec;
+    text-align: center;
+}
+
+.invitacion-day {
+    margin-top: 0.5rem;
+    color: #efbd69;
+    font-family: var(--fontTitle);
+    font-size: clamp(5rem, 9vw, 7rem);
+    line-height: 0.9;
+}
+
+.invitacion-month {
+    margin-top: 0.5rem;
+    color: #fff8ec;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.invitacion-time {
+    margin-top: 0.8rem;
+    color: #e2dbe2;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+    .invitacion {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+        margin-inline: 0.75rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .invitacion-date {
+        display: grid;
+        min-width: 0;
+        grid-template-columns: auto 1fr 1fr;
+        justify-items: start;
+        gap: 0.25rem 0.75rem;
+        padding: 1rem 0 0;
+        border-top: 1px solid rgb(240 190 105 / 48%);
+        border-left: 0;
+        text-align: left;
+    }
+
+    .invitacion-date-label {
+        grid-column: 1 / -1;
+    }
+
+    .invitacion-day {
+        grid-row: span 2;
+        margin: 0;
+    }
+
+    .invitacion-month,
+    .invitacion-time {
+        align-self: end;
+        margin: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .invitacion-link,
+    .invitacion-link span {
+        transition: none;
+    }
+}

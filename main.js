@@ -96,3 +96,11 @@ Promise.all([
         component.textContent = "No se pudieron habilitar los componentes de contenido.";
     });
 });
+
+import("./modules/mpod.js").catch((error) => {
+    console.error("No se pudo habilitar el componente del podio:", error);
+    const podium = document.querySelector("m-pod");
+    if (podium) {
+        podium.textContent = "No se pudo habilitar el componente del podio.";
+    }
+});

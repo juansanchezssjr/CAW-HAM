@@ -40,7 +40,7 @@ Los jueces tomarán en cuenta los siguientes criterios:
 
 <details>
 
-<summary>B. Altar</summary>
+<summary>B. Altar de muertos</summary>
 
 
 
@@ -102,7 +102,7 @@ Los jueces tomarán en cuenta los siguientes criterios:
 
 <details>
 
-<summary>C. Catrina y/o catrín</summary>
+<summary>C. El catrin o la catrina</summary>
 
 
 
@@ -125,3 +125,5 @@ Los jueces tomarán en cuenta los siguientes criterios:
 </details>
 
 ---
+
+[Ver el Reglamento del Evento ⇨](/assets/documents/reglamento.pdf)

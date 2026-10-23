@@ -17,7 +17,7 @@
             <nav class="h-nav">
                 <a href="#inicio">INICIO</a>
                 <a href="#evento">EVENTO</a>
-                <a href="">ALTAR</a>
+                <a href="#premios">PREMIOS</a>
             </nav>
         </header>
         <section class="hero">
@@ -26,11 +26,37 @@
         </section>
         <div class="band">5ta Edicion "Huellitas al Mictlan", Bienvenidos.</div>
         <m-md src="pages/inicio.md" id="inicio"></m-md>
+        <section class="invitacion" aria-labelledby="invitacion-title">
+            <div class="invitacion-copy">
+                <p class="invitacion-eyebrow">La tradición cobra vida</p>
+                <h2 id="invitacion-title">Celebremos juntos<br>el Día de Muertos</h2>
+                <p class="invitacion-description">Participa como catrín, catrina o presenta tu altar. Comparte tu creatividad y sé parte de una celebración llena de memoria y tradición.</p>
+                <a class="invitacion-link" href="#evento">Descubre cómo participar <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="invitacion-date" aria-label="Viernes 30 de octubre, de 17:00 a 19:00">
+                <span class="invitacion-date-label">Aparta la fecha</span>
+                <span class="invitacion-day">30</span>
+                <span class="invitacion-month">Octubre · 2026</span>
+                <span class="invitacion-time">17:00 — 19:00 h</span>
+            </div>
+        </section>
         <m-md src="pages/evento.md" id="evento"></m-md>
         <m-modl id="reglamento">
             Ver Reglamento
             <m-md slot="content" src="pages/reglamento.md"></m-md>
         </m-modl>
+        <m-pod title="Clasificación de Catrinas y Catrines" id="premios">
+            <podium-place place="2">Por Definir</podium-place>
+            <podium-place place="1">Por Definir</podium-place>
+            <podium-place place="3">Por Definir</podium-place>
+        </m-pod>
+        <m-pod variant="altars" title="Altares destacados" id="premios-altares">
+            <podium-place place="1">Por Definir</podium-place>
+            <podium-place place="2">Por Definir</podium-place>
+            <podium-place place="3">Por Definir</podium-place>
+            <podium-place place="4">Por Definir</podium-place>
+            <podium-place place="5">Por Definir</podium-place>
+        </m-pod>
     </main>
     <script src="main.js" defer></script>
 </body>

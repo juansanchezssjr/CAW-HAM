@@ -1,0 +1,202 @@
+:host {
+    display: block;
+    color: var(--fontMainColor, #313134);
+    font-family: var(--fontText, "Courier Prime", monospace);
+}
+
+.podium {
+    max-width: 64rem;
+    margin: 3rem auto;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem);
+    border-block: 1px solid #c9c3b9;
+    border-top: 4px solid #3d344f;
+    background: #f5f2ed;
+    text-align: center;
+}
+
+.podium-eyebrow {
+    margin: 0 0 0.5rem;
+    color: #9e6237;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.podium h2 {
+    margin: 0;
+    color: #3d344f;
+    font-family: var(--fontTitle, "Bebas Neue", sans-serif);
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.podium-places {
+    display: flex;
+    min-height: 19rem;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(0.5rem, 3vw, 1.5rem);
+    margin-top: 2rem;
+}
+
+::slotted(podium-place) {
+    flex: 1 1 10rem;
+    max-width: 14rem;
+}
+
+::slotted(podium-place[place="1"]) {
+    order: 1;
+}
+
+::slotted(podium-place[place="2"]) {
+    order: 0;
+}
+
+::slotted(podium-place[place="3"]) {
+    order: 2;
+}
+
+.podium--altars {
+    margin-top: 0;
+    border-top: 1px solid #d4cfc5;
+    background: #efede8;
+}
+
+.podium--altars .podium-eyebrow {
+    color: #777267;
+}
+
+.podium--altars h2 {
+    color: #514e47;
+}
+
+.podium--altars .podium-places {
+    display: grid;
+    min-height: 0;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.75rem;
+}
+
+.podium--altars ::slotted(podium-place) {
+    min-width: 0;
+    max-width: none;
+    order: initial;
+}
+
+.place {
+    text-align: center;
+}
+
+.place-heading {
+    display: flex;
+    min-height: 4.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.place-number {
+    color: var(--place-color, #3d344f);
+    font-family: var(--fontTitle, "Bebas Neue", sans-serif);
+    font-size: 2.4rem;
+    line-height: 1;
+}
+
+.place h3 {
+    margin: 0;
+    color: #4e4a48;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.place-stand {
+    display: grid;
+    min-height: var(--stand-height, 6rem);
+    place-items: center;
+    padding: 1rem 0.75rem;
+    border-top: 4px solid var(--place-color, #3d344f);
+    background: #e8e3db;
+    color: #313134;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.place--altar {
+    height: 100%;
+    padding: 1rem 0.75rem;
+    border: 1px solid #d7d3ca;
+    border-top: 3px solid var(--place-color, #777267);
+    background: #f7f6f2;
+    text-align: left;
+}
+
+.place--altar .place-heading {
+    min-height: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.85rem;
+}
+
+.place--altar .place-number {
+    color: var(--place-color, #777267);
+    font-size: 1.8rem;
+}
+
+.place--altar h3 {
+    color: #6b675f;
+    font-size: 0.72rem;
+    text-align: left;
+}
+
+.place--altar .place-stand {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #514e47;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+@media (max-width: 540px) {
+    .podium {
+        padding-inline: 0.75rem;
+    }
+
+    .podium-places {
+        gap: 0.35rem;
+    }
+
+    ::slotted(podium-place) {
+        flex-basis: 0;
+        min-width: 0;
+    }
+
+    .place h3 {
+        font-size: 0.68rem;
+    }
+
+    .place-stand {
+        padding-inline: 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .podium--altars .podium-places {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .place--altar {
+        padding: 0.75rem 0.5rem;
+    }
+}

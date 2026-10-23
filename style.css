@@ -335,6 +335,168 @@ header img {
     font-size: 0.9rem;
 }
 
+.altar-digital {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    margin: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 4rem);
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    border: 1px solid #d3c6b4;
+    background-color: #e9e4dc;
+}
+
+.altar-eyebrow {
+    margin-bottom: 0.75rem;
+    color: var(--fontTitleColor2);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.altar-intro h2 {
+    margin-bottom: 1rem;
+    color: var(--fontTitleColor);
+    font-family: var(--fontTitle);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.altar-intro > p:not(.altar-eyebrow, .altar-message) {
+    line-height: 1.7;
+}
+
+.altar-form {
+    margin-top: 1.5rem;
+}
+
+.altar-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.altar-form-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.altar-form input {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #867a6c;
+    background-color: #fff;
+    font: inherit;
+}
+
+.altar-form button,
+.altar-candle-button {
+    min-height: 2.75rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--fontTitleColor);
+    background-color: var(--fontTitleColor);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.altar-form button:hover,
+.altar-candle-button:hover {
+    background-color: var(--fontTitleColor2);
+}
+
+.altar-form input:focus-visible,
+.altar-form button:focus-visible,
+.altar-candle-button:focus-visible {
+    outline: 3px solid var(--fontTitleColor2);
+    outline-offset: 3px;
+}
+
+.altar-candle-button {
+    margin-top: 0.75rem;
+    border-color: var(--fontTitleColor2);
+    background-color: transparent;
+    color: var(--fontTitleColor);
+}
+
+.altar-candle-button:hover {
+    color: #fff;
+}
+
+.altar-message {
+    min-height: 1.5em;
+    margin-top: 1rem;
+    color: var(--fontTitleColor);
+    font-weight: 700;
+}
+
+.altar-art {
+    position: relative;
+    overflow: hidden;
+    border: 0.5rem solid #fff8ec;
+    background-color: #352532;
+    box-shadow: 0 0 0 1px #9e6237;
+    transition: box-shadow 0.3s ease;
+}
+
+.altar-art img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.altar-art.is-lit {
+    box-shadow: 0 0 1.5rem rgb(239 189 105 / 65%), 0 0 0 1px #9e6237;
+}
+
+.altar-art.is-lit img {
+    filter: brightness(1.12);
+}
+
+.altar-candle {
+    position: absolute;
+    right: 1rem;
+    bottom: 4rem;
+    font-size: 2.5rem;
+    opacity: 0.45;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.altar-art.is-lit .altar-candle {
+    filter: drop-shadow(0 0 0.8rem #ffd36a);
+    opacity: 1;
+}
+
+.altar-caption {
+    padding: 0.8rem 1rem;
+    background-color: #fff8ec;
+    text-align: center;
+}
+
+.altar-caption span,
+.altar-caption strong {
+    display: block;
+}
+
+.altar-caption span {
+    color: #6a6259;
+    font-size: 0.85rem;
+}
+
+.altar-caption strong {
+    margin-top: 0.2rem;
+    color: var(--fontTitleColor);
+    font-family: var(--fontTitle);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
 @media (max-width: 900px) {
     .invitacion {
         grid-template-columns: 1fr;
@@ -353,6 +515,15 @@ header img {
         border-top: 1px solid rgb(240 190 105 / 48%);
         border-left: 0;
         text-align: left;
+    }
+
+    .altar-digital {
+        grid-template-columns: 1fr;
+    }
+
+    .altar-art {
+        width: min(100%, 34rem);
+        margin: 0 auto;
     }
 
     .invitacion-date-label {

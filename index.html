@@ -40,6 +40,30 @@
                 <span class="invitacion-time">17:00 — 19:00 h</span>
             </div>
         </section>
+        <section class="altar-digital" id="altar" aria-labelledby="altar-title">
+            <div class="altar-intro">
+                <p class="altar-eyebrow">Un recuerdo que nos acompaña</p>
+                <h2 id="altar-title">Altar digital de mascotas</h2>
+                <p>Escribe el nombre de tu compañero de vida y enciende una veladora para dedicarle este pequeño altar.</p>
+                <form class="altar-form" id="altar-form">
+                    <label for="altar-pet-name">Nombre de tu mascota</label>
+                    <div class="altar-form-row">
+                        <input id="altar-pet-name" name="petName" type="text" maxlength="40" placeholder="Por ejemplo, Luna" required>
+                        <button type="submit">Dedicar recuerdo</button>
+                    </div>
+                </form>
+                <button class="altar-candle-button" id="altar-candle" type="button" aria-pressed="false">Encender veladora</button>
+                <p class="altar-message" id="altar-message" aria-live="polite">Aquí guardamos recuerdos con mucho cariño.</p>
+            </div>
+            <div class="altar-art" id="altar-art">
+                <img src="assets/images/2.png" alt="Ofrenda para mascotas con flores de cempasúchil, papel picado y fotografías">
+                <span class="altar-candle" aria-hidden="true">🕯️</span>
+                <div class="altar-caption">
+                    <span>En memoria de</span>
+                    <strong id="altar-pet-display">Nuestros compañeros</strong>
+                </div>
+            </div>
+        </section>
         <m-md src="pages/evento.md" id="evento"></m-md>
         <m-modl id="reglamento">
             Ver Reglamento

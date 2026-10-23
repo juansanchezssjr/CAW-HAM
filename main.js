@@ -87,6 +87,43 @@ window.addEventListener("scroll", updateHeaderSize, { passive: true });
 compactHeaderBreakpoint.addEventListener("change", updateHeaderSize);
 updateHeaderSize();
 
+const altarForm = document.querySelector("#altar-form");
+const altarNameInput = document.querySelector("#altar-pet-name");
+const altarPetDisplay = document.querySelector("#altar-pet-display");
+const altarMessage = document.querySelector("#altar-message");
+const altarCandleButton = document.querySelector("#altar-candle");
+const altarArt = document.querySelector("#altar-art");
+
+if (!altarForm || !altarNameInput || !altarPetDisplay || !altarMessage || !altarCandleButton || !altarArt) {
+    throw new Error("No se pudo inicializar el altar digital: faltan elementos requeridos.");
+}
+
+altarForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const petName = altarNameInput.value.trim();
+
+    if (!petName) {
+        altarMessage.textContent = "Escribe el nombre de tu mascota para dedicarle el recuerdo.";
+        altarNameInput.focus();
+        return;
+    }
+
+    altarPetDisplay.textContent = petName;
+    altarMessage.textContent = `Este recuerdo es para ${petName}. Gracias por acompañarnos.`;
+    altarNameInput.value = "";
+});
+
+altarCandleButton.addEventListener("click", () => {
+    const isLit = altarCandleButton.getAttribute("aria-pressed") !== "true";
+    altarCandleButton.setAttribute("aria-pressed", String(isLit));
+    altarArt.classList.toggle("is-lit", isLit);
+    altarCandleButton.textContent = isLit ? "Apagar veladora" : "Encender veladora";
+    altarCandleButton.setAttribute(
+        "aria-label",
+        isLit ? "Apagar veladora virtual" : "Encender veladora virtual"
+    );
+});
+
 Promise.all([
     import("./modules/mmd.js"),
     import("./modules/modl.js")

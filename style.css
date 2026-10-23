@@ -377,3 +377,50 @@ header img {
         transition: none;
     }
 }
+
+.site-footer {
+    padding: 2rem clamp(1.25rem, 5vw, 4rem);
+    border-top: 1px solid #d2cec8;
+    background-color: #e9e7e2;
+}
+
+.site-footer h2 {
+    margin-bottom: 1.25rem;
+    color: var(--fontTitleColor);
+    font-family: var(--fontTitle);
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.credits-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem 2rem;
+    list-style: none;
+}
+
+.credits-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-left: 0.85rem;
+    border-left: 2px solid #b5a17d;
+}
+
+.credits-list strong {
+    color: #3d344f;
+}
+
+.credits-list span {
+    color: #5f5b55;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 540px) {
+    .credits-list {
+        grid-template-columns: 1fr;
+    }
+}

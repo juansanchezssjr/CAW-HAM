@@ -209,18 +209,10 @@ Promise.all([
     });
 });
 
-import("./modules/mpod.js")
-    .then(() => import("./modules/podium-results.js"))
-    .then(({ loadPodiumResults }) => loadPodiumResults())
-    .catch((error) => {
-        console.error("No se pudo habilitar el podio y sus resultados:", error);
-        const podium = document.querySelector("m-pod");
-        if (podium) {
-            podium.textContent = "No se pudo habilitar el podio del festival.";
-        }
-        const status = document.querySelector("#podios-status");
-        if (status) {
-            status.hidden = false;
-            status.textContent = "No se pudieron habilitar los resultados del festival.";
-        }
-    });
+import("./modules/mpod.js").catch((error) => {
+    console.error("No se pudo habilitar el componente del podio:", error);
+    const podium = document.querySelector("m-pod");
+    if (podium) {
+        podium.textContent = "No se pudo habilitar el componente del podio.";
+    }
+});

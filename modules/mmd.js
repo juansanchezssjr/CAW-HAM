@@ -58,7 +58,7 @@ class MarkdownPage extends HTMLElement {
                 throw new Error("markdown-it no está disponible.");
             }
 
-            const response = await fetch(new URL(path, document.baseURI), { cache: "no-cache" });
+            const response = await fetch(new URL(path, document.baseURI));
             if (loadId !== this.loadId) {
                 return;
             }

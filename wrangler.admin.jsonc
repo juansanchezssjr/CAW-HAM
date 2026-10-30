@@ -1,0 +1,7 @@
+{
+    "$schema": "./node_modules/wrangler/config-schema.json",
+    "name": "ham-admin-auth",
+    "main": "admin-auth.mjs",
+    "compatibility_date": "2026-10-30",
+    "workers_dev": true
+}

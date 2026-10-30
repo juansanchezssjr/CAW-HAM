@@ -23,10 +23,10 @@ class MarkdownModal extends HTMLElement {
     }
 
     connectedCallback() {
-        const content = this.querySelector('m-md[slot="content"]');
+        const content = [...this.children].some((child) => child.slot === "content");
         if (!content) {
             this.triggerButton.disabled = true;
-            this.triggerButton.title = 'Agrega un elemento <m-md slot="content">.';
+            this.triggerButton.title = 'Agrega contenido con slot="content".';
         }
     }
 

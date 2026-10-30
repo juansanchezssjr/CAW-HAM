@@ -5,17 +5,19 @@
    ========================================================== */
 
 #mmd {
-    --mmd-accent: #5b32ad;
+    --mmd-accent: var(--fontTitleColor);
     --mmd-accent-2: var(--fontTitleColor2);
-    --mmd-border: #cfcfd8;
-    --mmd-muted: #6b6b73;
+    --mmd-border: var(--lineColor, #e4d7c6);
+    --mmd-muted: var(--fontSecondaryColor);
     --mmd-code-bg: #2a2733;
     --mmd-code-fg: #ecebf2;
-    --mmd-radius: 6px;
+    --mmd-radius: 0;
 
-    max-width: 52rem;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem 4rem;
+    box-sizing: border-box;
+    width: min(calc(100% - 3rem), 72rem);
+    max-width: 72rem;
+    margin: clamp(2rem, 5vw, 4rem) auto;
+    padding: clamp(1.25rem, 3vw, 2.5rem) 0;
     font-size: var(--fontSizeText);
     line-height: 1.7;
     overflow-wrap: break-word;
@@ -45,7 +47,7 @@
 
 #mmd h2 {
     font-size: 2rem;
-    padding-bottom: 0.3em;
+    padding-bottom: 0.4em;
     border-bottom: 1px solid var(--mmd-border);
 }
 
@@ -88,7 +90,7 @@
 }
 
 #mmd mark {
-    background-color: #f1dfc9;
+    background-color: var(--backgroundColor3);
     color: var(--fontMainColor);
     padding: 0.05em 0.25em;
     border-radius: 3px;
@@ -185,7 +187,7 @@
     margin: 1.4em 0;
     padding: 0.8em 1.2em;
     background-color: var(--backgroundColor2);
-    border-left: 4px solid var(--mmd-accent);
+    border-left: 4px solid var(--mmd-accent-2);
     border-radius: 0 var(--mmd-radius) var(--mmd-radius) 0;
     color: var(--fontSecondaryColor);
 }
@@ -204,7 +206,7 @@
 #mmd code,
 #mmd kbd,
 #mmd samp {
-    font-family: var(--fontText);
+    font-family: var(--fontMono, var(--fontText));
     font-size: 0.9em;
 }
 
@@ -372,7 +374,9 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    margin: 1.4em auto;
+    margin: 1.8em auto;
+    border: 1px solid var(--mmd-border);
+    box-shadow: 0 10px 28px rgb(61 52 79 / 10%);
 }
 
 #mmd figure {
@@ -436,8 +440,14 @@
 
 @media (max-width: 600px) {
     #mmd {
-        padding: 1.5rem 1rem 3rem;
-        font-size: 1.05rem;
+        width: calc(100% - 1.5rem);
+        margin-block: 1.5rem;
+        padding: 1.25rem 0;
+        font-size: 1rem;
+    }
+
+    #mmd h1 {
+        font-size: 2.25rem;
     }
 
     #mmd h2 {

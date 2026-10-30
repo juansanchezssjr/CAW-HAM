@@ -5,18 +5,20 @@
 }
 
 .podium {
-    max-width: 64rem;
-    margin: 3rem auto;
+    max-width: 72rem;
+    margin: clamp(2rem, 5vw, 4rem) auto;
     padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 3rem);
-    border-block: 1px solid #c9c3b9;
-    border-top: 4px solid #3d344f;
-    background: #f5f2ed;
+    border: 1px solid var(--podiumBorder, #e4d7c6);
+    border-top: 4px solid var(--fontTitleColor, #3d344f);
+    border-radius: 0;
+    background: var(--podiumSurface, #fffdf8);
     text-align: center;
+    box-shadow: var(--shadowSoft, 0 16px 40px rgb(61 52 79 / 8%));
 }
 
 .podium-eyebrow {
     margin: 0 0 0.5rem;
-    color: #9e6237;
+    color: var(--fontTitleColor2, #9e6237);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -25,7 +27,7 @@
 
 .podium h2 {
     margin: 0;
-    color: #3d344f;
+    color: var(--fontTitleColor, #3d344f);
     font-family: var(--fontTitle, "Bebas Neue", sans-serif);
     font-size: clamp(2.25rem, 6vw, 3.5rem);
     font-weight: 400;
@@ -61,16 +63,16 @@
 
 .podium--altars {
     margin-top: 0;
-    border-top: 1px solid #d4cfc5;
-    background: #efede8;
+    border-top: 1px solid var(--podiumBorder, #e4d7c6);
+    background: var(--podiumAltarsSurface, #f6f0e6);
 }
 
 .podium--altars .podium-eyebrow {
-    color: #777267;
+    color: var(--fontSecondaryColor, #777267);
 }
 
 .podium--altars h2 {
-    color: #514e47;
+    color: var(--fontMainColor, #514e47);
 }
 
 .podium--altars .podium-places {
@@ -110,7 +112,7 @@
 
 .place h3 {
     margin: 0;
-    color: #4e4a48;
+    color: var(--podiumHeadingColor, #4e4a48);
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -123,8 +125,8 @@
     place-items: center;
     padding: 1rem 0.75rem;
     border-top: 4px solid var(--place-color, #3d344f);
-    background: #e8e3db;
-    color: #313134;
+    background: var(--podiumStandSurface, #f1e9dd);
+    color: var(--podiumTextColor, #313134);
     font-weight: 700;
     overflow-wrap: anywhere;
 }
@@ -132,9 +134,10 @@
 .place--altar {
     height: 100%;
     padding: 1rem 0.75rem;
-    border: 1px solid #d7d3ca;
+    border: 1px solid var(--podiumBorder, #e4d7c6);
     border-top: 3px solid var(--place-color, #777267);
-    background: #f7f6f2;
+    border-radius: 0;
+    background: var(--podiumPlaceSurface, #fffdf8);
     text-align: left;
 }
 
@@ -152,7 +155,7 @@
 }
 
 .place--altar h3 {
-    color: #6b675f;
+    color: var(--podiumMutedColor, #6b675f);
     font-size: 0.72rem;
     text-align: left;
 }
@@ -163,14 +166,45 @@
     padding: 0;
     border: 0;
     background: transparent;
-    color: #514e47;
+    color: var(--fontSecondaryColor, #514e47);
     font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.5;
 }
 
+::slotted(.winner-place) {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+}
+
+::slotted(.winner-place img) {
+    display: block;
+    width: 100%;
+    max-height: 8rem;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid var(--podiumBorder, #e4d7c6);
+}
+
+::slotted(.winner-place__name) {
+    color: var(--podiumTextColor, #313134);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+::slotted(.winner-place__team) {
+    color: var(--fontSecondaryColor, #514e47);
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
 @media (max-width: 540px) {
     .podium {
+        width: calc(100% - 1.5rem);
         padding-inline: 0.75rem;
     }
 

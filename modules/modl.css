@@ -15,13 +15,16 @@
 
 .trigger {
     display: block;
-    width: 80%;
+    width: max-content;
+    max-width: calc(100% - 2rem);
     box-sizing: border-box;
-    margin: 0 auto;
-    border: 1px solid var(--fontTitleColor, #333);
-    border-radius: 0;
-    background: transparent;
-    color: var(--fontTitleColor, #333);
+    margin: 0 auto 2rem;
+    border: 1px solid var(--interactiveColor, #333);
+    border-radius: 999px;
+    background: var(--interactiveColor, #333);
+    color: var(--interactiveTextColor, #fffaf2);
+    font-weight: 700;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .close {
@@ -34,7 +37,8 @@
     border: 0;
     border-radius: 0;
     background: transparent;
-    color: #c42b1c;
+    border-radius: 50%;
+    color: var(--fontTitleColor, #333);
     font-family: Arial, sans-serif;
     font-size: 1.75rem;
     font-weight: 300;
@@ -42,8 +46,8 @@
 }
 
 .close:hover {
-    background: #c42b1c;
-    color: #fff;
+    background: var(--backgroundColor3, #ddd);
+    color: var(--fontTitleColor, #333);
 }
 
 .trigger:focus-visible,
@@ -53,7 +57,10 @@
 }
 
 .trigger:hover {
-    background: transparent;
+    border-color: var(--interactiveHoverColor, #555);
+    background: var(--interactiveHoverColor, #555);
+    color: var(--interactiveHoverTextColor, #fff);
+    transform: translateY(-1px);
 }
 
 .trigger:disabled {
@@ -63,18 +70,21 @@
 
 dialog {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    max-width: none;
-    max-height: none;
-    margin: 0;
-    padding: 0;
+    width: min(92vw, 64rem);
+    height: min(88vh, 54rem);
+    height: min(88dvh, 54rem);
+    max-width: calc(100vw - 1rem);
+    max-height: calc(100dvh - 1rem);
+    margin: auto;
+    padding: 0.5rem 1rem 1rem;
     overflow: hidden;
-    border: 0;
+    border: 1px solid var(--lineColor, #ddd);
+    border-radius: 1.25rem;
     background: var(--backgroundColor, #fff);
     color: inherit;
+    box-shadow: 0 28px 90px rgb(30 22 32 / 28%);
 }
 
 dialog:not([open]) {
@@ -82,19 +92,37 @@ dialog:not([open]) {
 }
 
 dialog::backdrop {
-    background: rgba(0, 0, 0, 0.72);
+    background: rgb(32 25 34 / 58%);
+    backdrop-filter: blur(4px);
 }
 
 header {
     display: flex;
     flex: 0 0 auto;
     justify-content: flex-end;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--backgroundColor3, #ddd);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--lineColor, #ddd);
 }
 
 main {
     flex: 1 1 auto;
     min-height: 0;
     overflow: auto;
+}
+
+@media (max-width: 600px) {
+    dialog {
+        width: calc(100vw - 1rem);
+        height: calc(100dvh - 1rem);
+        max-width: none;
+        max-height: none;
+        padding-inline: 0.5rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trigger {
+        transition: none;
+    }
 }

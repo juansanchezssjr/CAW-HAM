@@ -4,22 +4,111 @@
 @import url('./modules/responsive.css');
 
 :root {
+    color-scheme: light;
     --fontTitle: 'Bebas Neue', sans-serif;
-    --fontText: 'Courier Prime', monospace;
+    --fontText: 'Segoe UI', Tahoma, sans-serif;
+    --fontMono: 'Courier Prime', monospace;
     --fontSizeTitle: 2.5rem;
-    --fontSizeText: 1.2rem;
-    --fontMainColor: #313134;
-    --fontSecondaryColor: #333333;
+    --fontSizeText: 1.1rem;
+    --fontMainColor: #302a30;
+    --fontSecondaryColor: #51474d;
     --fontTitleColor: #3d344f;
-    --fontTitleColor2: #9e6237;
-    --selectionColor: #5b32ad8d;
-    --backgroundColor: #f1f1f1;
-    --backgroundColor2: #f5f5f5;
-    --backgroundColor3: #e8e8ef;
+    --fontTitleColor2: #a45e2a;
+    --interactiveColor: #3d344f;
+    --interactiveTextColor: #fffaf2;
+    --interactiveHoverColor: #a45e2a;
+    --interactiveHoverTextColor: #fffaf2;
+    --selectionColor: #a45e2a;
+    --backgroundColor: #f5efe5;
+    --backgroundColor2: #fffaf2;
+    --backgroundColor3: #eee3d4;
+    --surfaceColor: #fffdf8;
+    --lineColor: #e4d7c6;
+    --shadowSoft: 0 16px 40px rgb(61 52 79 / 8%);
+    --pageSurface: rgb(255 253 248 / 76%);
+    --headerSurface: rgb(255 253 248 / 92%);
+    --heroBackground:
+        radial-gradient(ellipse at 50% 68%, rgb(238 217 181 / 56%), transparent 35%),
+        linear-gradient(180deg, #fffdf8, #f8f0e4);
+    --heroTextShadow: 0 2px 0 rgb(255 255 255 / 70%);
+    --countdownSurface: rgb(255 253 248 / 88%);
+    --altarSurface:
+        radial-gradient(ellipse at 100% 0, rgb(217 161 77 / 12%), transparent 40%),
+        #f4ede2;
+    --inputSurface: #fffdf8;
+    --inputBorder: #c9b8a2;
+    --artFrame: #fffaf2;
+    --captionSurface: #fffaf2;
+    --footerSurface:
+        linear-gradient(135deg, rgb(61 52 79 / 4%), transparent 55%),
+        #f0e9de;
+    --podiumSurface: #fffdf8;
+    --podiumAltarsSurface: #f6f0e6;
+    --podiumStandSurface: #f1e9dd;
+    --podiumPlaceSurface: #fffdf8;
+    --podiumBorder: #e4d7c6;
+    --podiumHeadingColor: #4e4a48;
+    --podiumTextColor: #313134;
+    --podiumMutedColor: #6b675f;
+    --altarMutedColor: #6a6259;
+    --creditNameColor: #3d344f;
+    --creditTextColor: #5f5b55;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --fontMainColor: #efe7f0;
+    --fontSecondaryColor: #d3c7d2;
+    --fontTitleColor: #e3d3ec;
+    --fontTitleColor2: #f0bd78;
+    --interactiveColor: #8c6441;
+    --interactiveTextColor: #fff9f0;
+    --interactiveHoverColor: #e8ad68;
+    --interactiveHoverTextColor: #211b23;
+    --selectionColor: #87552f;
+    --backgroundColor: #19161d;
+    --backgroundColor2: #25212a;
+    --backgroundColor3: #38313d;
+    --surfaceColor: #28242d;
+    --lineColor: #49404e;
+    --shadowSoft: 0 16px 40px rgb(0 0 0 / 30%);
+    --pageSurface: rgb(33 29 37 / 94%);
+    --headerSurface: rgb(33 29 37 / 94%);
+    --heroBackground:
+        radial-gradient(ellipse at 50% 68%, rgb(117 81 110 / 26%), transparent 38%),
+        linear-gradient(180deg, #29232e, #201c24);
+    --heroTextShadow: 0 2px 12px rgb(0 0 0 / 34%);
+    --countdownSurface: rgb(37 33 42 / 92%);
+    --altarSurface:
+        radial-gradient(ellipse at 100% 0, rgb(217 161 77 / 10%), transparent 40%),
+        #28232a;
+    --inputSurface: #211e25;
+    --inputBorder: #65566a;
+    --artFrame: #211d23;
+    --captionSurface: #211d23;
+    --footerSurface:
+        linear-gradient(135deg, rgb(160 124 169 / 8%), transparent 55%),
+        #211e25;
+    --podiumSurface: #28242d;
+    --podiumAltarsSurface: #211e25;
+    --podiumStandSurface: #38313d;
+    --podiumPlaceSurface: #29242e;
+    --podiumBorder: #49404e;
+    --podiumHeadingColor: #e3d3ec;
+    --podiumTextColor: #e3d9e3;
+    --podiumMutedColor: #c2b5c3;
+    --altarMutedColor: #c2b5c3;
+    --creditNameColor: #e3d3ec;
+    --creditTextColor: #c2b5c3;
+}
+
+:root[data-theme="dark"] .page-main > header img {
+    filter: grayscale(1) invert(1);
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
 }
 
 * {
@@ -38,15 +127,19 @@ html {
 /* Pagina Principal */
 
 body {
-    background-color: var(--backgroundColor);
+    background:
+        radial-gradient(ellipse at 12% 18%, rgb(220 184 128 / 13%), transparent 28rem),
+        radial-gradient(ellipse at 88% 55%, rgb(115 87 111 / 8%), transparent 34rem),
+        var(--backgroundColor);
 }
 
 .page-main {
-    width: calc(100% - 10rem);
-    max-width: 1200px;
+    width: min(calc(100% - clamp(3rem, 10vw, 10rem)), 1200px);
+    min-height: 100vh;
     margin: 0 auto;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    overflow: clip;
+    background-color: var(--pageSurface);
+    box-shadow: 0 0 70px rgb(61 52 79 / 6%);
 }
 
 header {
@@ -55,12 +148,12 @@ header {
     z-index: 10;
     user-select: none;
     display: flex;
-    padding: 20px;
-    background-color: rgb(245 245 245 / 88%);
+    padding: 0.9rem clamp(1.25rem, 5vw, 4rem);
+    background-color: var(--headerSurface);
     backdrop-filter: blur(12px);
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--lineColor);
     transition: padding 0.25s ease, background-color 0.25s ease, transform 0.3s ease;
 }
 
@@ -104,7 +197,7 @@ header {
 }
 
 header img {
-    width: 12rem;
+    width: 10.5rem;
     height: auto;
     transition: width 0.25s ease;
 }
@@ -115,20 +208,23 @@ header img {
     min-height: 44px;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem;
+    padding: 0 1.15rem;
+    border-radius: 999px;
     text-decoration: none;
     color: var(--fontMainColor);
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease, color 0.3s ease, font-size 0.25s ease;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition: background-color 0.2s ease, color 0.2s ease, font-size 0.25s ease;
 }
 
 .page-main > header.is-compact {
-    padding: 0.6rem 1.25rem;
-    background-color: rgb(245 245 245 / 78%);
+    padding: 0.55rem clamp(1.25rem, 5vw, 4rem);
+    background-color: var(--headerSurface);
 }
 
 .page-main > header.is-compact img {
-    width: 8rem;
+    width: 7.5rem;
 }
 
 .page-main > header.is-compact .h-nav a {
@@ -136,9 +232,8 @@ header img {
 }
 
 .h-nav a:hover {
-    background-color: #e1a15c;
-    font-weight: bold;
-    color: white;
+    background-color: var(--interactiveColor);
+    color: var(--interactiveTextColor);
 }
 
 .h-nav a:focus-visible {
@@ -146,23 +241,80 @@ header img {
     outline-offset: 2px;
 }
 
+.h-nav .theme-toggle {
+    display: inline-grid;
+    width: 44px;
+    min-height: 44px;
+    place-items: center;
+    border: 1px solid var(--lineColor);
+    border-radius: 50%;
+    background-color: var(--backgroundColor2);
+    color: var(--fontTitleColor2);
+    cursor: pointer;
+    font-size: 1.35rem;
+    line-height: 1;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.h-nav .theme-toggle span {
+    color: inherit;
+}
+
+.h-nav .theme-toggle:hover {
+    border-color: var(--interactiveColor);
+    background-color: var(--interactiveColor);
+    color: var(--interactiveTextColor);
+}
+
+.h-nav .theme-toggle:focus-visible {
+    outline: 3px solid var(--fontTitleColor2);
+    outline-offset: 3px;
+}
+
 .hero {
+    position: relative;
+    isolation: isolate;
     user-select: none;
-    min-height: 60vh;
+    min-height: min(72vh, 48rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 3rem 1.5rem;
+    gap: 2rem;
+    padding: clamp(4rem, 10vw, 8rem) 1.5rem;
+    overflow: hidden;
+    background: var(--heroBackground);
     text-align: center;
 }
 
+.hero::before,
+.hero::after {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: min(70vw, 34rem);
+    aspect-ratio: 1;
+    border: 1px solid rgb(164 94 42 / 12%);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.hero::after {
+    width: min(58vw, 27rem);
+    border-style: dashed;
+    border-color: rgb(61 52 79 / 10%);
+}
+
 .hero h1 {
+    max-width: 16ch;
     color: var(--fontTitleColor);
     font-family: var(--fontTitle);
-    font-size: clamp(3rem, 10vw, 7rem);
-    line-height: 1.1;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    line-height: 0.96;
+    text-shadow: var(--heroTextShadow);
 }
 
 .hero strong {
@@ -170,27 +322,33 @@ header img {
     color: var(--fontTitleColor2);
     font-family: inherit;
     font-size: inherit;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 #countdown {
-    color: var(--fontMainColor);
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    max-width: 100%;
+    color: var(--fontTitleColor);
+    font-family: var(--fontMono);
+    font-size: clamp(0.95rem, 2.5vw, 1.25rem);
     font-weight: 700;
     border-radius: 100px;
-    padding: 1rem 1.5rem;
-    background-color: var(--backgroundColor3);
-    border: 1px solid var(--fontTitleColor2);
+    padding: 0.85rem 1.4rem;
+    background-color: var(--countdownSurface);
+    border: 1px solid rgb(164 94 42 / 42%);
+    box-shadow: 0 8px 26px rgb(61 52 79 / 8%);
 }
 
 .band {
     user-select: none;
-    background-color: #353637;
-    color: white;
+    background-color: var(--interactiveColor);
+    color: var(--interactiveTextColor);
     text-align: center;
-    padding: 1rem 1rem;
-    font-size: 1.2rem;
+    padding: 1.1rem 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: inset 0 3px 0 #d9a14d;
 }
 
 .invitacion {
@@ -201,13 +359,15 @@ header img {
     align-items: center;
     gap: clamp(2rem, 7vw, 6rem);
     overflow: hidden;
-    margin: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 4rem);
+    margin: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
     padding: clamp(2rem, 6vw, 4.5rem);
-    border-block: 1px solid rgb(240 190 105 / 55%);
+    border: 1px solid rgb(240 190 105 / 42%);
+    border-radius: 0;
     background:
         radial-gradient(ellipse at 85% 50%, rgb(158 98 55 / 28%), transparent 36%),
         linear-gradient(120deg, #282131, #3d344f 70%, #332b3b);
     color: #f8f1e6;
+    box-shadow: 0 20px 50px rgb(40 33 49 / 16%);
 }
 
 .invitacion::before,
@@ -272,6 +432,7 @@ header img {
     gap: 1rem;
     margin-top: 1.5rem;
     padding: 0.65rem 1rem;
+    border-radius: 999px;
     border: 1px solid #efbd69;
     color: #fff8ec;
     font-weight: 700;
@@ -340,10 +501,12 @@ header img {
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
     align-items: center;
     gap: clamp(2rem, 6vw, 5rem);
-    margin: clamp(2rem, 6vw, 4rem) clamp(1rem, 5vw, 4rem);
+    margin: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
     padding: clamp(1.5rem, 5vw, 3.5rem);
-    border: 1px solid #d3c6b4;
-    background-color: #e9e4dc;
+    border: 1px solid var(--lineColor);
+    border-radius: 0;
+    background: var(--altarSurface);
+    box-shadow: var(--shadowSoft);
 }
 
 .altar-eyebrow {
@@ -387,8 +550,9 @@ header img {
     min-width: 0;
     min-height: 2.75rem;
     padding: 0.6rem 0.75rem;
-    border: 1px solid #867a6c;
-    background-color: #fff;
+    border: 1px solid var(--inputBorder);
+    border-radius: 0.5rem;
+    background-color: var(--inputSurface);
     font: inherit;
 }
 
@@ -396,9 +560,10 @@ header img {
 .altar-candle-button {
     min-height: 2.75rem;
     padding: 0.6rem 0.9rem;
-    border: 1px solid var(--fontTitleColor);
-    background-color: var(--fontTitleColor);
-    color: #fff;
+    border: 1px solid var(--interactiveColor);
+    border-radius: 0.5rem;
+    background-color: var(--interactiveColor);
+    color: var(--interactiveTextColor);
     cursor: pointer;
     font: inherit;
     font-weight: 700;
@@ -406,7 +571,9 @@ header img {
 
 .altar-form button:hover,
 .altar-candle-button:hover {
-    background-color: var(--fontTitleColor2);
+    background-color: var(--interactiveHoverColor);
+    border-color: var(--interactiveHoverColor);
+    color: var(--interactiveHoverTextColor);
 }
 
 .altar-form input:focus-visible,
@@ -424,7 +591,7 @@ header img {
 }
 
 .altar-candle-button:hover {
-    color: #fff;
+    color: var(--interactiveHoverTextColor);
 }
 
 .altar-message {
@@ -437,10 +604,15 @@ header img {
 .altar-art {
     position: relative;
     overflow: hidden;
-    border: 0.5rem solid #fff8ec;
-    background-color: #352532;
-    box-shadow: 0 0 0 1px #9e6237;
+    border: 0.5rem solid var(--artFrame);
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 0 1px #d4ae7c, 0 14px 36px rgb(61 52 79 / 14%);
     transition: box-shadow 0.3s ease;
+}
+
+.altar-art img {
+    background-color: #342c34;
 }
 
 .altar-art img {
@@ -475,7 +647,7 @@ header img {
 
 .altar-caption {
     padding: 0.8rem 1rem;
-    background-color: #fff8ec;
+    background-color: var(--captionSurface);
     text-align: center;
 }
 
@@ -485,7 +657,7 @@ header img {
 }
 
 .altar-caption span {
-    color: #6a6259;
+    color: var(--altarMutedColor);
     font-size: 0.85rem;
 }
 
@@ -495,13 +667,14 @@ header img {
     font-family: var(--fontTitle);
     font-size: 1.5rem;
     font-weight: 400;
+    overflow-wrap: anywhere;
 }
 
 @media (max-width: 900px) {
     .invitacion {
         grid-template-columns: 1fr;
         gap: 1.75rem;
-        margin-inline: 0.75rem;
+        margin-inline: 1rem;
         padding: 2rem 1.5rem;
     }
 
@@ -519,6 +692,7 @@ header img {
 
     .altar-digital {
         grid-template-columns: 1fr;
+        margin-inline: 1rem;
     }
 
     .altar-art {
@@ -550,9 +724,9 @@ header img {
 }
 
 .site-footer {
-    padding: 2rem clamp(1.25rem, 5vw, 4rem);
-    border-top: 1px solid #d2cec8;
-    background-color: #e9e7e2;
+    padding: 2.5rem clamp(1.25rem, 5vw, 4rem);
+    border-top: 1px solid var(--lineColor);
+    background: var(--footerSurface);
 }
 
 .site-footer h2 {
@@ -577,15 +751,15 @@ header img {
     flex-direction: column;
     gap: 0.2rem;
     padding-left: 0.85rem;
-    border-left: 2px solid #b5a17d;
+    border-left: 2px solid #c6914d;
 }
 
 .credits-list strong {
-    color: #3d344f;
+    color: var(--creditNameColor);
 }
 
 .credits-list span {
-    color: #5f5b55;
+    color: var(--creditTextColor);
     font-size: 0.9rem;
     line-height: 1.5;
 }
@@ -593,5 +767,65 @@ header img {
 @media (max-width: 540px) {
     .credits-list {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 52svh;
+    }
+
+    .hero::before {
+        width: min(88vw, 27rem);
+    }
+
+    .hero::after {
+        width: min(74vw, 22rem);
+    }
+
+    .band {
+        padding-inline: 1.25rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 48svh;
+        gap: 1.5rem;
+        padding-block: 3.5rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.75rem, 13vw, 4rem);
+    }
+
+    #countdown {
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+    }
+
+    .invitacion,
+    .altar-digital {
+        margin-inline: 0.75rem;
+    }
+
+    .altar-form-row {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    header,
+    header img,
+    .h-nav a,
+    .h-nav .theme-toggle,
+    .altar-art,
+    .altar-art img {
+        transition: none;
     }
 }

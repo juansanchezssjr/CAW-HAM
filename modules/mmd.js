@@ -1,8 +1,14 @@
 class MarkdownPage extends HTMLElement {
+    static get observedAttributes() {
+        return ["src", "path"];
+    }
+
     constructor() {
         super();
 
         this.attachShadow({ mode: "open" });
+        this.loadId = 0;
+        this.hasConnected = false;
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -28,6 +34,18 @@ class MarkdownPage extends HTMLElement {
     }
 
     async connectedCallback() {
+        this.hasConnected = true;
+        this.loadContent();
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue && this.hasConnected && this.isConnected) {
+            this.loadContent();
+        }
+    }
+
+    async loadContent() {
+        const loadId = ++this.loadId;
         const path = this.getAttribute("src") || this.getAttribute("path");
 
         if (!path) {
@@ -40,12 +58,20 @@ class MarkdownPage extends HTMLElement {
                 throw new Error("markdown-it no está disponible.");
             }
 
-            const response = await fetch(new URL(path, document.baseURI));
+            const response = await fetch(new URL(path, document.baseURI), { cache: "no-cache" });
+            if (loadId !== this.loadId) {
+                return;
+            }
+
             if (!response.ok) {
                 throw new Error(`No se pudo cargar "${path}" (HTTP ${response.status}).`);
             }
 
             const markdown = await response.text();
+            if (loadId !== this.loadId) {
+                return;
+            }
+
             const parser = window.markdownit({
                 html: true,
                 linkify: true,
@@ -69,7 +95,9 @@ class MarkdownPage extends HTMLElement {
 
             this.content.innerHTML = parser.render(markdown);
         } catch (error) {
-            this.showError(error);
+            if (loadId === this.loadId) {
+                this.showError(error);
+            }
         }
     }
 

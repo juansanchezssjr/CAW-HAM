@@ -1,14 +1,14 @@
-class MarkdownModal extends HTMLElement {
+class MarkdownDialog extends HTMLElement {
     constructor() {
         super();
 
         this.attachShadow({ mode: "open" });
         this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="${new URL("./modl.css", import.meta.url).href}">
+            <link rel="stylesheet" href="${new URL("./markdown-dialog.css", import.meta.url).href}">
             <button class="trigger" type="button"><slot>Abrir contenido</slot></button>
             <dialog aria-label="Contenido Markdown">
                 <header>
-                    <button class="close" type="button" aria-label="Cerrar ventana modal">×</button>
+                    <button class="close" type="button" aria-label="Cerrar ventana modal"><span class="material-symbols-rounded" aria-hidden="true">close</span></button>
                 </header>
                 <main><slot name="content"></slot></main>
             </dialog>
@@ -23,10 +23,10 @@ class MarkdownModal extends HTMLElement {
     }
 
     connectedCallback() {
-        const content = this.querySelector('m-md[slot="content"]');
+        const content = this.querySelector('markdown-content[slot="content"]');
         if (!content) {
             this.triggerButton.disabled = true;
-            this.triggerButton.title = 'Agrega un elemento <m-md slot="content">.';
+            this.triggerButton.title = 'Agrega un elemento <markdown-content slot="content">.';
         }
     }
 
@@ -43,4 +43,4 @@ class MarkdownModal extends HTMLElement {
     }
 }
 
-customElements.define("m-modl", MarkdownModal);
+customElements.define("markdown-dialog", MarkdownDialog);

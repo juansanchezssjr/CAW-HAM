@@ -1,4 +1,4 @@
-class MarkdownPage extends HTMLElement {
+class MarkdownContent extends HTMLElement {
     static get observedAttributes() {
         return ["src", "path"];
     }
@@ -7,8 +7,8 @@ class MarkdownPage extends HTMLElement {
         super();
 
         this.attachShadow({ mode: "open" });
-        this.loadId = 0;
-        this.hasConnected = false;
+        this.requestId = 0;
+        this.isInitialized = false;
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -17,7 +17,7 @@ class MarkdownPage extends HTMLElement {
                     font-family: var(--fontText);
                 }
 
-                .mmd-error {
+                .markdown-error {
                     max-width: 52rem;
                     margin: 0 auto;
                     padding: 1rem 1.25rem;
@@ -25,50 +25,50 @@ class MarkdownPage extends HTMLElement {
                     font-weight: 700;
                 }
             </style>
-            <link rel="stylesheet" href="${new URL("./mmd.css", import.meta.url).href}">
+            <link rel="stylesheet" href="${new URL("./markdown-content.css", import.meta.url).href}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
-            <div id="mmd" aria-live="polite">Cargando contenido...</div>
+            <div id="markdown-content" aria-live="polite">Cargando contenido...</div>
         `;
 
-        this.content = this.shadowRoot.querySelector("#mmd");
+        this.markdownContent = this.shadowRoot.querySelector("#markdown-content");
     }
 
     async connectedCallback() {
-        this.hasConnected = true;
-        this.loadContent();
+        this.isInitialized = true;
+        this.loadMarkdown();
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue !== newValue && this.hasConnected && this.isConnected) {
-            this.loadContent();
+        if (oldValue !== newValue && this.isInitialized && this.isConnected) {
+            this.loadMarkdown();
         }
     }
 
-    async loadContent() {
-        const loadId = ++this.loadId;
+    async loadMarkdown() {
+        const requestId = ++this.requestId;
         const path = this.getAttribute("src") || this.getAttribute("path");
 
         if (!path) {
-            this.showError(new Error('Falta el atributo "src" con la ruta del archivo Markdown.'));
+            this.renderError(new Error('Missing required "src" attribute for the Markdown file.'));
             return;
         }
 
         try {
             if (typeof window.markdownit !== "function") {
-                throw new Error("markdown-it no está disponible.");
+                throw new Error("markdown-it is unavailable.");
             }
 
             const response = await fetch(new URL(path, document.baseURI));
-            if (loadId !== this.loadId) {
+            if (requestId !== this.requestId) {
                 return;
             }
 
             if (!response.ok) {
-                throw new Error(`No se pudo cargar "${path}" (HTTP ${response.status}).`);
+                throw new Error(`Could not load "${path}" (HTTP ${response.status}).`);
             }
 
             const markdown = await response.text();
-            if (loadId !== this.loadId) {
+            if (requestId !== this.requestId) {
                 return;
             }
 
@@ -85,7 +85,7 @@ class MarkdownPage extends HTMLElement {
                             }).value;
                             return `<pre class="hljs"><code>${highlighted}</code></pre>`;
                         } catch (error) {
-                            console.error(`No se pudo resaltar el bloque "${language}":`, error);
+                            console.error(`Could not highlight the "${language}" code block:`, error);
                         }
                     }
 
@@ -93,19 +93,19 @@ class MarkdownPage extends HTMLElement {
                 }
             });
 
-            this.content.innerHTML = parser.render(markdown);
+            this.markdownContent.innerHTML = parser.render(markdown);
         } catch (error) {
-            if (loadId === this.loadId) {
-                this.showError(error);
+            if (requestId === this.requestId) {
+                this.renderError(error);
             }
         }
     }
 
-    showError(error) {
-        console.error("Error al cargar el contenido Markdown:", error);
-        this.content.className = "mmd-error";
-        this.content.textContent = `No se pudo mostrar el contenido: ${error.message}`;
+    renderError(error) {
+        console.error("Could not load Markdown content:", error);
+        this.markdownContent.className = "markdown-error";
+        this.markdownContent.textContent = `No se pudo mostrar el contenido: ${error.message}`;
     }
 }
 
-customElements.define("m-md", MarkdownPage);
+customElements.define("markdown-content", MarkdownContent);

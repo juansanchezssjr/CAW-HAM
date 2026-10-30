@@ -1,4 +1,4 @@
-/* Estilos del documento y variables */
+
 
 @import url('./assets/fonts/fonts.css');
 @import url('./modules/responsive.css');
@@ -102,7 +102,7 @@
     --creditTextColor: #c2b5c3;
 }
 
-:root[data-theme="dark"] .page-main > header img {
+:root[data-theme="dark"] .site-main > header img {
     filter: grayscale(1) invert(1);
 }
 
@@ -119,12 +119,30 @@ html {
     font-family: var(--fontText);
 }
 
+.material-symbols-rounded {
+    display: inline-block;
+    font-family: "Material Symbols Rounded", sans-serif;
+    font-size: 1.25em;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "liga";
+    font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
+}
+
 ::selection {
     background-color: var(--selectionColor);
     color: white;
 }
 
-/* Pagina Principal */
+
 
 body {
     background:
@@ -133,7 +151,7 @@ body {
         var(--backgroundColor);
 }
 
-.page-main {
+.site-main {
     width: min(calc(100% - clamp(3rem, 10vw, 10rem)), 1200px);
     min-height: 100vh;
     margin: 0 auto;
@@ -162,7 +180,7 @@ header {
 }
 
 @media (min-width: 769px) and (hover: hover) and (pointer: fine) {
-    .page-main > header.is-hidden {
+    .site-main > header.is-hidden {
         transform: translateY(-110%);
     }
 
@@ -203,7 +221,7 @@ header img {
 }
 
 
-.h-nav a {
+.site-nav a {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
@@ -218,55 +236,61 @@ header img {
     transition: background-color 0.2s ease, color 0.2s ease, font-size 0.25s ease;
 }
 
-.page-main > header.is-compact {
+.site-nav a .material-symbols-rounded {
+    margin-right: 0.35rem;
+    vertical-align: -0.15em;
+    font-size: 1.2rem;
+}
+
+.site-main > header.is-compact {
     padding: 0.55rem clamp(1.25rem, 5vw, 4rem);
     background-color: var(--headerSurface);
 }
 
-.page-main > header.is-compact img {
+.site-main > header.is-compact img {
     width: 7.5rem;
 }
 
-.page-main > header.is-compact .h-nav a {
+.site-main > header.is-compact .site-nav a {
     font-size: 1rem;
 }
 
-.h-nav a:hover {
+.site-nav a:hover {
     background-color: var(--interactiveColor);
     color: var(--interactiveTextColor);
 }
 
-.h-nav a:focus-visible {
+.site-nav a:focus-visible {
     outline: 2px solid var(--fontTitleColor2);
     outline-offset: 2px;
 }
 
-.h-nav .theme-toggle {
+.site-nav .theme-toggle {
     display: inline-grid;
     width: 44px;
     min-height: 44px;
     place-items: center;
-    border: 1px solid var(--lineColor);
+    border: 1px solid transparent;
     border-radius: 50%;
-    background-color: var(--backgroundColor2);
-    color: var(--fontTitleColor2);
+    background-color: transparent;
+    color: var(--fontSecondaryColor);
     cursor: pointer;
-    font-size: 1.35rem;
+    font-size: 1rem;
     line-height: 1;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.h-nav .theme-toggle span {
+.site-nav .theme-toggle span {
     color: inherit;
+    font-size: 1.2rem;
 }
 
-.h-nav .theme-toggle:hover {
-    border-color: var(--interactiveColor);
-    background-color: var(--interactiveColor);
-    color: var(--interactiveTextColor);
+.site-nav .theme-toggle:hover {
+    background-color: var(--backgroundColor3);
+    color: var(--fontTitleColor2);
 }
 
-.h-nav .theme-toggle:focus-visible {
+.site-nav .theme-toggle:focus-visible {
     outline: 3px solid var(--fontTitleColor2);
     outline-offset: 3px;
 }
@@ -338,7 +362,7 @@ header img {
     box-shadow: 0 8px 26px rgb(61 52 79 / 8%);
 }
 
-.band {
+.festival-banner {
     user-select: none;
     background-color: var(--interactiveColor);
     color: var(--interactiveTextColor);
@@ -351,7 +375,64 @@ header img {
     box-shadow: inset 0 3px 0 #d9a14d;
 }
 
-.invitacion {
+.awards-marquee {
+    overflow: hidden;
+    border-block: 1px solid var(--fontTitleColor2);
+    background-color: var(--interactiveColor);
+}
+
+.awards-marquee[hidden] {
+    display: none;
+}
+
+.awards-marquee a {
+    display: flex;
+    min-height: 3.5rem;
+    align-items: center;
+    overflow: hidden;
+    color: var(--interactiveTextColor);
+    text-decoration: none;
+}
+
+.awards-marquee a:focus-visible {
+    outline: 3px solid var(--fontTitleColor2);
+    outline-offset: -3px;
+}
+
+.awards-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: awards-marquee-scroll 28s linear infinite;
+}
+
+.awards-marquee-message {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding-inline: 1.5rem;
+    color: var(--interactiveTextColor);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.awards-marquee-message .material-symbols-rounded {
+    color: var(--fontTitleColor2);
+    font-size: 1.35rem;
+}
+
+.awards-marquee a:hover .awards-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes awards-marquee-scroll {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.invitation {
     position: relative;
     isolation: isolate;
     display: grid;
@@ -370,20 +451,20 @@ header img {
     box-shadow: 0 20px 50px rgb(40 33 49 / 16%);
 }
 
-.invitacion::before,
-.invitacion::after {
+.invitation::before,
+.invitation::after {
     position: absolute;
     z-index: -1;
     content: "";
     pointer-events: none;
 }
 
-.invitacion::before {
+.invitation::before {
     inset: 0.75rem;
     border: 1px solid rgb(240 190 105 / 22%);
 }
 
-.invitacion::after {
+.invitation::after {
     top: 50%;
     right: 8%;
     width: clamp(12rem, 28vw, 22rem);
@@ -394,12 +475,12 @@ header img {
     transform: translateY(-50%) rotate(45deg);
 }
 
-.invitacion-copy {
+.invitation-copy {
     max-width: 42rem;
 }
 
-.invitacion-eyebrow,
-.invitacion-date-label {
+.invitation-eyebrow,
+.invitation-date-label {
     color: #efbd69;
     font-size: 0.8rem;
     font-weight: 700;
@@ -407,7 +488,7 @@ header img {
     text-transform: uppercase;
 }
 
-.invitacion h2 {
+.invitation h2 {
     margin-top: 0.8rem;
     color: #fff8ec;
     font-family: var(--fontTitle);
@@ -417,7 +498,7 @@ header img {
     text-transform: uppercase;
 }
 
-.invitacion-description {
+.invitation-description {
     max-width: 35rem;
     margin-top: 1.25rem;
     color: #e2dbe2;
@@ -425,7 +506,7 @@ header img {
     line-height: 1.7;
 }
 
-.invitacion-link {
+.invitation-link {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
@@ -440,30 +521,30 @@ header img {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.invitacion-link span {
+.invitation-link span {
     color: #efbd69;
     font-size: 1.3rem;
     transition: transform 0.2s ease;
 }
 
-.invitacion-link:hover,
-.invitacion-link:focus-visible {
+.invitation-link:hover,
+.invitation-link:focus-visible {
     background-color: #efbd69;
     color: #282131;
 }
 
-.invitacion-link:hover span,
-.invitacion-link:focus-visible span {
+.invitation-link:hover span,
+.invitation-link:focus-visible span {
     color: #282131;
     transform: translateX(0.2rem);
 }
 
-.invitacion-link:focus-visible {
+.invitation-link:focus-visible {
     outline: 2px solid #fff8ec;
     outline-offset: 3px;
 }
 
-.invitacion-date {
+.invitation-date {
     display: flex;
     min-width: 10rem;
     flex-direction: column;
@@ -475,7 +556,7 @@ header img {
     text-align: center;
 }
 
-.invitacion-day {
+.invitation-day {
     margin-top: 0.5rem;
     color: #efbd69;
     font-family: var(--fontTitle);
@@ -483,20 +564,20 @@ header img {
     line-height: 0.9;
 }
 
-.invitacion-month {
+.invitation-month {
     margin-top: 0.5rem;
     color: #fff8ec;
     font-size: 0.95rem;
     font-weight: 700;
 }
 
-.invitacion-time {
+.invitation-time {
     margin-top: 0.8rem;
     color: #e2dbe2;
     font-size: 0.9rem;
 }
 
-.altar-digital {
+.digital-altar {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
     align-items: center;
@@ -635,6 +716,7 @@ header img {
     position: absolute;
     right: 1rem;
     bottom: 4rem;
+    color: #ffd36a;
     font-size: 2.5rem;
     opacity: 0.45;
     transition: filter 0.3s ease, opacity 0.3s ease;
@@ -671,14 +753,14 @@ header img {
 }
 
 @media (max-width: 900px) {
-    .invitacion {
+    .invitation {
         grid-template-columns: 1fr;
         gap: 1.75rem;
         margin-inline: 1rem;
         padding: 2rem 1.5rem;
     }
 
-    .invitacion-date {
+    .invitation-date {
         display: grid;
         min-width: 0;
         grid-template-columns: auto 1fr 1fr;
@@ -690,7 +772,7 @@ header img {
         text-align: left;
     }
 
-    .altar-digital {
+    .digital-altar {
         grid-template-columns: 1fr;
         margin-inline: 1rem;
     }
@@ -700,25 +782,42 @@ header img {
         margin: 0 auto;
     }
 
-    .invitacion-date-label {
+    .invitation-date-label {
         grid-column: 1 / -1;
     }
 
-    .invitacion-day {
+    .invitation-day {
         grid-row: span 2;
         margin: 0;
     }
 
-    .invitacion-month,
-    .invitacion-time {
+    .invitation-month,
+    .invitation-time {
         align-self: end;
         margin: 0;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .invitacion-link,
-    .invitacion-link span {
+    .awards-marquee-track {
+        animation: none;
+        width: 100%;
+    }
+
+    .awards-marquee-message:not(:first-child) {
+        display: none;
+    }
+
+    .awards-marquee-message:first-child {
+        flex: 1 1 auto;
+        justify-content: center;
+        padding-block: 0.75rem;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .invitation-link,
+    .invitation-link span {
         transition: none;
     }
 }
@@ -783,9 +882,13 @@ header img {
         width: min(74vw, 22rem);
     }
 
-    .band {
+    .festival-banner {
         padding-inline: 1.25rem;
         line-height: 1.5;
+    }
+
+    .site-nav a .material-symbols-rounded {
+        display: none;
     }
 }
 
@@ -805,8 +908,8 @@ header img {
         border-radius: 1rem;
     }
 
-    .invitacion,
-    .altar-digital {
+    .invitation,
+    .digital-altar {
         margin-inline: 0.75rem;
     }
 
@@ -822,8 +925,8 @@ header img {
 
     header,
     header img,
-    .h-nav a,
-    .h-nav .theme-toggle,
+    .site-nav a,
+    .site-nav .theme-toggle,
     .altar-art,
     .altar-art img {
         transition: none;

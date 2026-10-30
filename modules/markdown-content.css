@@ -1,17 +1,13 @@
-/* ==========================================================
-   Estilos del módulo Markdown — contenedor #mmd
-   Usa las variables globales de la página. Las variables
-   locales (--mmd-*) solo existen dentro del contenedor.
-   ========================================================== */
 
-#mmd {
-    --mmd-accent: var(--fontTitleColor);
-    --mmd-accent-2: var(--fontTitleColor2);
-    --mmd-border: var(--lineColor, #e4d7c6);
-    --mmd-muted: var(--fontSecondaryColor);
-    --mmd-code-bg: #2a2733;
-    --mmd-code-fg: #ecebf2;
-    --mmd-radius: 0;
+
+#markdown-content {
+    --markdown-accent: var(--fontTitleColor);
+    --markdown-accent-2: var(--fontTitleColor2);
+    --markdown-border: var(--lineColor, #e4d7c6);
+    --markdown-muted: var(--fontSecondaryColor);
+    --markdown-code-bg: #2a2733;
+    --markdown-code-fg: #ecebf2;
+    --markdown-radius: 0;
 
     box-sizing: border-box;
     width: min(calc(100% - 3rem), 72rem);
@@ -23,14 +19,14 @@
     overflow-wrap: break-word;
 }
 
-/* ---------- Encabezados ---------- */
 
-#mmd h1,
-#mmd h2,
-#mmd h3,
-#mmd h4,
-#mmd h5,
-#mmd h6 {
+
+#markdown-content h1,
+#markdown-content h2,
+#markdown-content h3,
+#markdown-content h4,
+#markdown-content h5,
+#markdown-content h6 {
     font-family: var(--fontTitle);
     font-weight: 400;
     color: var(--fontTitleColor);
@@ -39,217 +35,217 @@
     margin: 2.2em 0 0.6em;
 }
 
-#mmd h1 {
+#markdown-content h1 {
     font-size: var(--fontSizeTitle);
     text-align: center;
     margin: 0 0 1.2rem;
 }
 
-#mmd h2 {
+#markdown-content h2 {
     font-size: 2rem;
     padding-bottom: 0.4em;
-    border-bottom: 1px solid var(--mmd-border);
+    border-bottom: 1px solid var(--markdown-border);
 }
 
-#mmd h3 {
+#markdown-content h3 {
     font-size: 1.6rem;
 }
 
-#mmd h4 {
+#markdown-content h4 {
     font-size: 1.3rem;
-    color: var(--mmd-accent-2);
+    color: var(--markdown-accent-2);
 }
 
-#mmd h5 {
+#markdown-content h5 {
     font-size: 1.1rem;
-    color: var(--mmd-accent-2);
+    color: var(--markdown-accent-2);
 }
 
-#mmd h6 {
+#markdown-content h6 {
     font-size: 1rem;
-    color: var(--mmd-muted);
+    color: var(--markdown-muted);
     text-transform: uppercase;
 }
 
-/* ---------- Texto ---------- */
 
-#mmd p {
+
+#markdown-content p {
     margin: 0 0 1.1em;
 }
 
-#mmd strong {
+#markdown-content strong {
     font-weight: 700;
 }
 
-#mmd em {
+#markdown-content em {
     font-style: italic;
 }
 
-#mmd del {
-    color: var(--mmd-muted);
+#markdown-content del {
+    color: var(--markdown-muted);
 }
 
-#mmd mark {
+#markdown-content mark {
     background-color: var(--backgroundColor3);
     color: var(--fontMainColor);
     padding: 0.05em 0.25em;
     border-radius: 3px;
 }
 
-#mmd sub,
-#mmd sup {
+#markdown-content sub,
+#markdown-content sup {
     font-size: 0.75em;
     line-height: 0;
 }
 
-#mmd abbr[title] {
+#markdown-content abbr[title] {
     text-decoration: underline dotted;
     cursor: help;
 }
 
-#mmd small {
+#markdown-content small {
     font-size: 0.85em;
-    color: var(--mmd-muted);
+    color: var(--markdown-muted);
 }
 
-#mmd a {
-    color: var(--mmd-accent);
+#markdown-content a {
+    color: var(--markdown-accent);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
     transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
-#mmd a:hover {
-    color: var(--mmd-accent-2);
+#markdown-content a:hover {
+    color: var(--markdown-accent-2);
 }
 
-#mmd a:focus-visible,
-#mmd summary:focus-visible {
-    outline: 2px solid var(--mmd-accent);
+#markdown-content a:focus-visible,
+#markdown-content summary:focus-visible {
+    outline: 2px solid var(--markdown-accent);
     outline-offset: 3px;
     border-radius: 2px;
 }
 
-/* ---------- Listas ---------- */
 
-#mmd ul,
-#mmd ol {
+
+#markdown-content ul,
+#markdown-content ol {
     margin: 0 0 1.1em;
     padding-left: 1.6em;
 }
 
-#mmd li {
+#markdown-content li {
     margin: 0.3em 0;
 }
 
-#mmd li>ul,
-#mmd li>ol {
+#markdown-content li>ul,
+#markdown-content li>ol {
     margin: 0.3em 0 0.3em;
 }
 
-#mmd li::marker {
-    color: var(--mmd-accent-2);
+#markdown-content li::marker {
+    color: var(--markdown-accent-2);
 }
 
-/* Listas de tareas (- [ ] / - [x]) */
-#mmd ul:has(> li > input[type="checkbox"]),
-#mmd li:has(> input[type="checkbox"]) {
+
+#markdown-content ul:has(> li > input[type="checkbox"]),
+#markdown-content li:has(> input[type="checkbox"]) {
     list-style: none;
     padding-left: 0;
 }
 
-#mmd li>input[type="checkbox"] {
-    accent-color: var(--mmd-accent);
+#markdown-content li>input[type="checkbox"] {
+    accent-color: var(--markdown-accent);
     margin-right: 0.5em;
     transform: translateY(1px);
 }
 
-/* Listas de definición */
-#mmd dl {
+
+#markdown-content dl {
     margin: 0 0 1.1em;
 }
 
-#mmd dt {
+#markdown-content dt {
     font-weight: 700;
     color: var(--fontTitleColor);
     margin-top: 0.8em;
 }
 
-#mmd dd {
+#markdown-content dd {
     margin-left: 1.5em;
     color: var(--fontSecondaryColor);
 }
 
-/* ---------- Citas ---------- */
 
-#mmd blockquote {
+
+#markdown-content blockquote {
     margin: 1.4em 0;
     padding: 0.8em 1.2em;
     background-color: var(--backgroundColor2);
-    border-left: 4px solid var(--mmd-accent-2);
-    border-radius: 0 var(--mmd-radius) var(--mmd-radius) 0;
+    border-left: 4px solid var(--markdown-accent-2);
+    border-radius: 0 var(--markdown-radius) var(--markdown-radius) 0;
     color: var(--fontSecondaryColor);
 }
 
-#mmd blockquote> :last-child {
+#markdown-content blockquote> :last-child {
     margin-bottom: 0;
 }
 
-#mmd blockquote blockquote {
-    border-left-color: var(--mmd-accent-2);
+#markdown-content blockquote blockquote {
+    border-left-color: var(--markdown-accent-2);
     background-color: var(--backgroundColor3);
 }
 
-/* ---------- Código ---------- */
 
-#mmd code,
-#mmd kbd,
-#mmd samp {
+
+#markdown-content code,
+#markdown-content kbd,
+#markdown-content samp {
     font-family: var(--fontMono, var(--fontText));
     font-size: 0.9em;
 }
 
-#mmd :not(pre)>code {
+#markdown-content :not(pre)>code {
     background-color: var(--backgroundColor3);
     color: var(--fontTitleColor);
     padding: 0.15em 0.4em;
-    border: 1px solid var(--mmd-border);
+    border: 1px solid var(--markdown-border);
     border-radius: 4px;
 }
 
-#mmd pre {
+#markdown-content pre {
     margin: 1.4em 0;
     padding: 1.1em 1.25em;
-    background-color: var(--mmd-code-bg);
-    border-radius: var(--mmd-radius);
+    background-color: var(--markdown-code-bg);
+    border-radius: var(--markdown-radius);
     overflow-x: auto;
     line-height: 1.55;
     tab-size: 4;
 }
 
-#mmd pre code {
+#markdown-content pre code {
     background: none;
     border: 0;
     padding: 0;
-    color: var(--mmd-code-fg);
+    color: var(--markdown-code-fg);
     font-size: 0.95rem;
     white-space: pre;
 }
 
-#mmd kbd {
+#markdown-content kbd {
     display: inline-block;
     padding: 0.1em 0.45em;
     background-color: var(--backgroundColor2);
-    border: 1px solid var(--mmd-border);
+    border: 1px solid var(--markdown-border);
     border-bottom-width: 2px;
     border-radius: 4px;
     color: var(--fontMainColor);
 }
 
-/* ---------- Tablas ---------- */
 
-#mmd table {
+
+#markdown-content table {
     display: block;
     width: max-content;
     max-width: 100%;
@@ -259,40 +255,40 @@
     font-size: 0.95em;
 }
 
-#mmd th,
-#mmd td {
+#markdown-content th,
+#markdown-content td {
     padding: 0.6em 0.9em;
-    border: 1px solid var(--mmd-border);
+    border: 1px solid var(--markdown-border);
     text-align: left;
     vertical-align: top;
 }
 
-#mmd thead th {
+#markdown-content thead th {
     background-color: var(--fontTitleColor);
     color: #fff;
     font-weight: 700;
     border-color: var(--fontTitleColor);
 }
 
-#mmd tbody tr:nth-child(even) {
+#markdown-content tbody tr:nth-child(even) {
     background-color: var(--backgroundColor2);
 }
 
-#mmd tbody tr:hover {
+#markdown-content tbody tr:hover {
     background-color: var(--backgroundColor3);
 }
 
-/* ---------- Contenido desplegable ---------- */
 
-#mmd details {
+
+#markdown-content details {
     margin: 1.2em 0;
     background-color: var(--backgroundColor2);
-    border: 1px solid var(--mmd-border);
-    border-radius: var(--mmd-radius);
+    border: 1px solid var(--markdown-border);
+    border-radius: var(--markdown-radius);
     overflow: clip;
 }
 
-#mmd summary {
+#markdown-content summary {
     position: relative;
     padding: 0.8em 1em 0.8em 2.6em;
     font-weight: 700;
@@ -303,167 +299,167 @@
     transition: background-color 0.2s ease;
 }
 
-#mmd summary::-webkit-details-marker {
+#markdown-content summary::-webkit-details-marker {
     display: none;
 }
 
-#mmd summary::before {
+#markdown-content summary::before {
     content: "";
     position: absolute;
     left: 1.1em;
     top: 50%;
     width: 0.5em;
     height: 0.5em;
-    border-right: 2px solid var(--mmd-accent);
-    border-bottom: 2px solid var(--mmd-accent);
+    border-right: 2px solid var(--markdown-accent);
+    border-bottom: 2px solid var(--markdown-accent);
     transform: translateY(-70%) rotate(-45deg);
     transition: transform 0.2s ease;
 }
 
-#mmd summary:hover {
+#markdown-content summary:hover {
     background-color: var(--backgroundColor3);
 }
 
-#mmd details[open]>summary {
-    border-bottom: 1px solid var(--mmd-border);
+#markdown-content details[open]>summary {
+    border-bottom: 1px solid var(--markdown-border);
 }
 
-#mmd details[open]>summary::before {
+#markdown-content details[open]>summary::before {
     transform: translateY(-70%) rotate(45deg);
 }
 
-#mmd details> :not(summary) {
+#markdown-content details> :not(summary) {
     margin-left: 1em;
     margin-right: 1em;
 }
 
-#mmd details>table {
+#markdown-content details>table {
     max-width: calc(100% - 2em);
 }
 
-#mmd details>summary+* {
+#markdown-content details>summary+* {
     margin-top: 1em;
 }
 
-#mmd details> :last-child {
+#markdown-content details> :last-child {
     margin-bottom: 1em;
 }
 
-#mmd details details {
+#markdown-content details details {
     margin-left: 1em;
     margin-right: 1em;
     background-color: var(--backgroundColor3);
 }
 
-#mmd details details summary:hover {
+#markdown-content details details summary:hover {
     background-color: #dedee8;
 }
 
-/* ---------- Imágenes, figuras y multimedia ---------- */
 
-#mmd img,
-#mmd video,
-#mmd iframe {
+
+#markdown-content img,
+#markdown-content video,
+#markdown-content iframe {
     max-width: 100%;
     height: auto;
-    border-radius: var(--mmd-radius);
+    border-radius: var(--markdown-radius);
 }
 
-#mmd img {
+#markdown-content img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: contain;
     margin: 1.8em auto;
-    border: 1px solid var(--mmd-border);
+    border: 1px solid var(--markdown-border);
     box-shadow: 0 10px 28px rgb(61 52 79 / 10%);
 }
 
-#mmd figure {
+#markdown-content figure {
     margin: 1.6em 0;
 }
 
-#mmd figure img {
+#markdown-content figure img {
     margin: 0 auto;
 }
 
-#mmd figcaption {
+#markdown-content figcaption {
     margin-top: 0.6em;
     font-size: 0.85em;
     text-align: center;
-    color: var(--mmd-muted);
+    color: var(--markdown-muted);
 }
 
-#mmd iframe {
+#markdown-content iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
     border: 0;
 }
 
-/* ---------- Separadores y notas al pie ---------- */
 
-#mmd hr {
+
+#markdown-content hr {
     height: 1px;
     margin: 2.5em 0;
     border: 0;
-    background-color: var(--mmd-border);
+    background-color: var(--markdown-border);
 }
 
-#mmd .footnotes,
-#mmd section[data-footnotes] {
+#markdown-content .footnotes,
+#markdown-content section[data-footnotes] {
     margin-top: 3em;
     padding-top: 1em;
-    border-top: 1px solid var(--mmd-border);
+    border-top: 1px solid var(--markdown-border);
     font-size: 0.85em;
-    color: var(--mmd-muted);
+    color: var(--markdown-muted);
 }
 
-#mmd sup a,
-#mmd a[href^="#fn"] {
+#markdown-content sup a,
+#markdown-content a[href^="#fn"] {
     text-decoration: none;
 }
 
-/* ---------- Detalles finales ---------- */
 
-#mmd> :first-child {
+
+#markdown-content> :first-child {
     margin-top: 0;
 }
 
-#mmd ::selection {
-    background-color: var(--mmd-accent);
+#markdown-content ::selection {
+    background-color: var(--markdown-accent);
     color: #fff;
 }
 
-#mmd pre ::selection {
+#markdown-content pre ::selection {
     background-color: #7b57d1;
 }
 
 @media (max-width: 600px) {
-    #mmd {
+    #markdown-content {
         width: calc(100% - 1.5rem);
         margin-block: 1.5rem;
         padding: 1.25rem 0;
         font-size: 1rem;
     }
 
-    #mmd h1 {
+    #markdown-content h1 {
         font-size: 2.25rem;
     }
 
-    #mmd h2 {
+    #markdown-content h2 {
         font-size: 1.7rem;
     }
 
-    #mmd h3 {
+    #markdown-content h3 {
         font-size: 1.4rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-    #mmd a,
-    #mmd summary,
-    #mmd summary::before {
+    #markdown-content a,
+    #markdown-content summary,
+    #markdown-content summary::before {
         transition: none;
     }
 }

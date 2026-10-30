@@ -15,12 +15,12 @@ const altarPlaces = {
 class PodiumPlace extends HTMLElement {
     connectedCallback() {
         const place = Number(this.getAttribute("place"));
-        const isAltar = this.closest("m-pod")?.getAttribute("variant") === "altars";
-        const details = (isAltar ? altarPlaces : podiumPlaces)[place];
+        const hasAltars = this.closest("awards-podium")?.getAttribute("variant") === "altars";
+        const details = (hasAltars ? altarPlaces : podiumPlaces)[place];
 
         if (!Number.isInteger(place) || !details) {
             this.hidden = true;
-            console.warn(`podium-place requiere place entre 1 y ${isAltar ? 5 : 3}.`);
+            console.warn(`podium-place requires place between 1 and ${hasAltars ? 5 : 3}.`);
             return;
         }
 
@@ -30,8 +30,8 @@ class PodiumPlace extends HTMLElement {
 
         const root = this.attachShadow({ mode: "open" });
         root.innerHTML = `
-            <link rel="stylesheet" href="${new URL("./mpod.css", import.meta.url).href}">
-            <article class="place${isAltar ? " place--altar" : ""}" aria-label="${details.label}">
+            <link rel="stylesheet" href="${new URL("./awards-podium.css", import.meta.url).href}">
+            <article class="place${hasAltars ? " place--altar" : ""}" aria-label="${details.label}">
                 <header class="place-heading">
                     <span class="place-number" aria-hidden="true">0${place}</span>
                     <h3>${details.label}</h3>
@@ -41,24 +41,24 @@ class PodiumPlace extends HTMLElement {
                 </div>
             </article>`;
         root.querySelector(".place").style.setProperty("--place-color", details.color);
-        if (!isAltar) {
+        if (!hasAltars) {
             root.querySelector(".place-stand").style.setProperty("--stand-height", details.height);
         }
     }
 }
 
-class Podium extends HTMLElement {
+class AwardsPodium extends HTMLElement {
     connectedCallback() {
         if (this.shadowRoot) {
             return;
         }
 
         const title = this.getAttribute("title") || "Clasificación";
-        const isAltar = this.getAttribute("variant") === "altars";
+        const hasAltars = this.getAttribute("variant") === "altars";
         const root = this.attachShadow({ mode: "open" });
         root.innerHTML = `
-            <link rel="stylesheet" href="${new URL("./mpod.css", import.meta.url).href}">
-            <section class="podium${isAltar ? " podium--altars" : ""}" aria-labelledby="podium-title">
+            <link rel="stylesheet" href="${new URL("./awards-podium.css", import.meta.url).href}">
+            <section class="podium${hasAltars ? " awards-podium--altars" : ""}" aria-labelledby="podium-title">
                 <p class="podium-eyebrow">Festival del Día de Muertos</p>
                 <h2 id="podium-title"></h2>
                 <div class="podium-places">
@@ -70,4 +70,4 @@ class Podium extends HTMLElement {
 }
 
 customElements.define("podium-place", PodiumPlace);
-customElements.define("m-pod", Podium);
+customElements.define("awards-podium", AwardsPodium);

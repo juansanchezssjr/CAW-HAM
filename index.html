@@ -18,12 +18,15 @@
                     : themePreference.matches ? "dark" : "light";
                 themeRoot.dataset.themeMode = hasSavedTheme ? "manual" : "system";
             } catch (error) {
-                console.error("No se pudo leer la preferencia del tema:", error);
+                console.error("Could not read the theme preference:", error);
                 themeRoot.dataset.theme = themePreference.matches ? "dark" : "light";
                 themeRoot.dataset.themeMode = "system";
             }
         })();
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,400,0" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script>
@@ -31,15 +34,15 @@
 </head>
 <body>
     <div class="header-reveal-zone" aria-hidden="true"></div>
-    <main class="page-main">
+    <main class="site-main">
         <header>
             <img src="logoheader.png" alt="Logo">
-            <nav class="h-nav">
-                <a href="#inicio">INICIO</a>
-                <a href="#evento">EVENTO</a>
-                <a href="#premios">PREMIOS</a>
+            <nav class="site-nav">
+                <a href="#home"><span class="material-symbols-rounded" aria-hidden="true">home</span> INICIO</a>
+                <a href="#event"><span class="material-symbols-rounded" aria-hidden="true">event</span> EVENTO</a>
+                <a href="#awards"><span class="material-symbols-rounded" aria-hidden="true">emoji_events</span> PREMIOS</a>
                 <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro">
-                    <span aria-hidden="true">☾</span>
+                    <span class="material-symbols-rounded" aria-hidden="true">dark_mode</span>
                 </button>
             </nav>
         </header>
@@ -47,63 +50,73 @@
             <h1>5° Festival del <strong>Día de Muertos</strong></h1>
             <p id="countdown" role="timer" aria-label="Cuenta regresiva para el festival"></p>
         </section>
-        <div class="band">5ta Edicion "Huellitas al Mictlan", Bienvenidos.</div>
-        <m-md src="pages/inicio.md" data-post-event-src="pages/inicio-post-evento.md" id="inicio"></m-md>
-        <section class="invitacion" aria-labelledby="invitacion-title">
-            <div class="invitacion-copy">
-                <p class="invitacion-eyebrow">La tradición cobra vida</p>
-                <h2 id="invitacion-title">Celebremos juntos<br>el Día de Muertos</h2>
-                <p class="invitacion-description">Participa como catrín, catrina o presenta tu altar. Comparte tu creatividad y sé parte de una celebración llena de memoria y tradición.</p>
-                <a class="invitacion-link" href="#evento">Descubre cómo participar <span aria-hidden="true">→</span></a>
+        <div class="festival-banner">5ta Edicion "Huellitas al Mictlan", Bienvenidos.</div>
+        <aside class="awards-marquee" id="awards-marquee" aria-label="Resultados del festival" hidden>
+            <a href="#awards" aria-label="Los premios están listos. Consulta los resultados del festival">
+                <span class="awards-marquee-track" aria-hidden="true">
+                    <span class="awards-marquee-message"><span class="material-symbols-rounded">emoji_events</span> ¡Los premios están listos! Consulta los resultados del festival <span class="material-symbols-rounded">arrow_forward</span></span>
+                    <span class="awards-marquee-message"><span class="material-symbols-rounded">emoji_events</span> ¡Los premios están listos! Consulta los resultados del festival <span class="material-symbols-rounded">arrow_forward</span></span>
+                    <span class="awards-marquee-message"><span class="material-symbols-rounded">emoji_events</span> ¡Los premios están listos! Consulta los resultados del festival <span class="material-symbols-rounded">arrow_forward</span></span>
+                    <span class="awards-marquee-message"><span class="material-symbols-rounded">emoji_events</span> ¡Los premios están listos! Consulta los resultados del festival <span class="material-symbols-rounded">arrow_forward</span></span>
+                </span>
+            </a>
+        </aside>
+        <markdown-content src="pages/home.md" data-post-event-src="pages/home-post-event.md" id="home"></markdown-content>
+        <section class="invitation" aria-labelledby="invitation-title">
+            <div class="invitation-copy">
+                <p class="invitation-eyebrow">La tradición cobra vida</p>
+                <h2 id="invitation-title">Celebremos juntos<br>el Día de Muertos</h2>
+                <p class="invitation-description">Participa como catrín, catrina o presenta tu altar. Comparte tu creatividad y sé parte de una celebración llena de memoria y tradición.</p>
+                <a class="invitation-link" href="#event">Descubre cómo participar <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
             </div>
-            <div class="invitacion-date" aria-label="Viernes 30 de octubre, de 17:00 a 19:00">
-                <span class="invitacion-date-label">Aparta la fecha</span>
-                <span class="invitacion-day">30</span>
-                <span class="invitacion-month">Octubre · 2026</span>
-                <span class="invitacion-time">17:00 — 19:00 h</span>
+            <div class="invitation-date" aria-label="Viernes 30 de octubre, de 17:00 a 19:00">
+                <span class="invitation-date-label">Aparta la fecha</span>
+                <span class="invitation-day">30</span>
+                <span class="invitation-month">Octubre · 2026</span>
+                <span class="invitation-time">17:00 — 19:00 h</span>
             </div>
         </section>
-        <section class="altar-digital" id="altar" aria-labelledby="altar-title">
+        <section class="digital-altar" id="digital-altar" aria-labelledby="digital-altar-title">
             <div class="altar-intro">
                 <p class="altar-eyebrow">Un recuerdo que nos acompaña</p>
-                <h2 id="altar-title">Altar digital de mascotas</h2>
+                <h2 id="digital-altar-title">Altar digital de mascotas</h2>
                 <p>Escribe el nombre de tu compañero de vida y enciende una veladora para dedicarle este pequeño altar.</p>
-                <form class="altar-form" id="altar-form">
-                    <label for="altar-pet-name">Nombre de tu mascota</label>
+                <form class="altar-form" id="digital-altar-form">
+                    <label for="digital-altar-pet-name">Nombre de tu mascota</label>
                     <div class="altar-form-row">
-                        <input id="altar-pet-name" name="petName" type="text" maxlength="40" placeholder="Por ejemplo, Luna" required>
+                        <input id="digital-altar-pet-name" name="petName" type="text" maxlength="40" placeholder="Por ejemplo, Luna" required>
                         <button type="submit">Dedicar recuerdo</button>
                     </div>
                 </form>
-                <button class="altar-candle-button" id="altar-candle" type="button" aria-pressed="false">Encender veladora</button>
-                <p class="altar-message" id="altar-message" aria-live="polite">Aquí guardamos recuerdos con mucho cariño.</p>
+                <button class="altar-candle-button" id="digital-altar-candle" type="button" aria-pressed="false">Encender veladora</button>
+                <p class="altar-message" id="digital-altar-message" aria-live="polite">Aquí guardamos recuerdos con mucho cariño.</p>
             </div>
-            <div class="altar-art" id="altar-art">
+            <div class="altar-art" id="digital-altar-art">
                 <img src="assets/images/altar-icon.png" alt="Ofrenda para mascotas con flores de cempasúchil, papel picado y fotografías">
-                <span class="altar-candle" aria-hidden="true">🕯️</span>
+                <span class="altar-candle material-symbols-rounded" aria-hidden="true">local_fire_department</span>
                 <div class="altar-caption">
                     <span>En memoria de</span>
-                    <strong id="altar-pet-display">Nuestros compañeros</strong>
+                    <strong id="digital-altar-pet-display">Nuestros compañeros</strong>
                 </div>
             </div>
         </section>
-        <m-md src="pages/evento.md" data-post-event-src="pages/evento-post-evento.md" id="evento"></m-md>
-        <m-modl id="reglamento">
+        <markdown-content src="pages/event.md" data-post-event-src="pages/event-post-event.md" id="event"></markdown-content>
+        <markdown-dialog id="regulations">
             Ver Reglamento
-            <m-md slot="content" src="pages/reglamento.md" data-post-event-src="pages/reglamento-post-evento.md"></m-md>
-        </m-modl>
-        <m-pod title="Clasificación de Catrinas y Catrines" id="premios">
+            <markdown-content slot="content" src="pages/regulations.md" data-post-event-src="pages/regulations-post-event.md"></markdown-content>
+        </markdown-dialog>
+        <awards-podium title="Clasificación de Catrinas y Catrines" id="awards">
             <podium-place place="2">Por Definir</podium-place>
             <podium-place place="1">Por Definir</podium-place>
             <podium-place place="3">Por Definir</podium-place>
-        </m-pod>
-        <m-pod variant="altars" title="Altares destacados" id="premios-altares">
+        </awards-podium>
+        <awards-podium variant="altars" title="Altares destacados" id="altar-awards">
             <podium-place place="1">Por Definir</podium-place>
             <podium-place place="2">Por Definir</podium-place>
             <podium-place place="3">Por Definir</podium-place>
             <podium-place place="4">Por Definir</podium-place>
             <podium-place place="5">Por Definir</podium-place>
-        </m-pod>
+        </awards-podium>
         <footer class="site-footer">
             <h2>Créditos</h2>
             <ul class="credits-list">

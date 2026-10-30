@@ -1,27 +1,27 @@
 @media (max-width: 768px) {
-    body .page-main {
+    body .site-main {
         width: 100%;
         border: 0;
     }
 
-    body .page-main > header {
+    body .site-main > header {
         flex-direction: column;
         gap: 0.65rem;
         padding: 0.8rem 1rem;
     }
 
-    body .page-main > header img {
+    body .site-main > header img {
         width: 8.5rem;
     }
 
-    body .page-main .h-nav {
+    body .site-main .site-nav {
         display: grid;
         width: 100%;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 0.125rem;
     }
 
-    body .page-main .h-nav a {
+    body .site-main .site-nav a {
         display: inline-flex;
         min-height: 42px;
         padding: 0.4rem 0.1rem;
@@ -29,11 +29,11 @@
         letter-spacing: 0.02em;
     }
 
-    body .page-main .hero {
+    body .site-main .hero {
         min-height: 52svh;
     }
 
-    body .page-main .hero h1 {
+    body .site-main .hero h1 {
         font-size: clamp(2.75rem, 10vw, 4.5rem);
     }
 
@@ -41,17 +41,17 @@
         padding: 0.75rem 1rem;
     }
 
-    body .page-main .band {
+    body .site-main .festival-banner {
         font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
-    body .page-main > header img {
+    body .site-main > header img {
         width: 8rem;
     }
 
-    body .page-main .hero h1 {
+    body .site-main .hero h1 {
         font-size: clamp(2.5rem, 12vw, 3.5rem);
     }
 

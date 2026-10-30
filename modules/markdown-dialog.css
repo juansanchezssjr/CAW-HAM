@@ -39,10 +39,15 @@
     background: transparent;
     border-radius: 50%;
     color: var(--fontTitleColor, #333);
-    font-family: Arial, sans-serif;
     font-size: 1.75rem;
     font-weight: 300;
     line-height: 1;
+}
+
+.close .material-symbols-rounded {
+    font-family: "Material Symbols Rounded", sans-serif;
+    font-feature-settings: "liga";
+    font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
 }
 
 .close:hover {
@@ -70,21 +75,23 @@
 
 dialog {
     display: flex;
+    position: fixed;
+    inset: 0;
     box-sizing: border-box;
     flex-direction: column;
-    width: min(92vw, 64rem);
-    height: min(88vh, 54rem);
-    height: min(88dvh, 54rem);
-    max-width: calc(100vw - 1rem);
-    max-height: calc(100dvh - 1rem);
-    margin: auto;
-    padding: 0.5rem 1rem 1rem;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0.5rem clamp(0.75rem, 3vw, 2rem) 1rem;
     overflow: hidden;
-    border: 1px solid var(--lineColor, #ddd);
-    border-radius: 1.25rem;
+    border: 0;
+    border-radius: 0;
     background: var(--backgroundColor, #fff);
     color: inherit;
-    box-shadow: 0 28px 90px rgb(30 22 32 / 28%);
+    box-shadow: none;
 }
 
 dialog:not([open]) {
@@ -108,17 +115,6 @@ main {
     flex: 1 1 auto;
     min-height: 0;
     overflow: auto;
-}
-
-@media (max-width: 600px) {
-    dialog {
-        width: calc(100vw - 1rem);
-        height: calc(100dvh - 1rem);
-        max-width: none;
-        max-height: none;
-        padding-inline: 0.5rem;
-        border-radius: 1rem;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
